@@ -1,0 +1,222 @@
+---
+interface Props {
+	title: string;
+	time: string;
+	location: string;
+	campaign: 'det-okay' | 'diy' | 'brave-together';
+	href?: string;
+}
+
+const { title, time, location, campaign, href = '#' } = Astro.props;
+---
+
+<article class="card">
+	<a href={href}>
+		<div class:list={['card-image', campaign]}>
+			{campaign === 'det-okay' && (
+				<div class="poster det-okay-poster">
+					<span class="tag">DET</span>
+					<span class="tag">ER</span>
+					<span class="tag accent">OKAY</span>
+				</div>
+			)}
+			{campaign === 'diy' && (
+				<div class="poster diy-poster">
+					<span class="diy-label">DIY</span>
+					<span class="diy-sub">UNGDOMMEN<br/>EN STEMME</span>
+				</div>
+			)}
+			{campaign === 'brave-together' && (
+				<div class="poster brave-poster">
+					<div class="brave-top">MAYBELLINE x headspace</div>
+					<div class="brave-main">BRAVE<br/>TOGETHER</div>
+				</div>
+			)}
+		</div>
+
+		<div class="card-body">
+			<h3>{title}</h3>
+			<div class="meta">
+				<span class="meta-item">
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+					{time}
+				</span>
+				<span class="meta-item">
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+					{location}
+				</span>
+			</div>
+			<span class="cta">Læs mere og deltag ›</span>
+		</div>
+	</a>
+</article>
+
+<style>
+	.card {
+		background: white;
+		border-radius: 16px;
+		overflow: hidden;
+		box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.card:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 8px 28px rgba(0,0,0,0.13);
+	}
+
+	.card > a {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		color: inherit;
+	}
+
+	/* ── Image area ── */
+	.card-image {
+		height: 190px;
+		position: relative;
+		overflow: hidden;
+		flex-shrink: 0;
+	}
+
+	.poster {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		padding: 18px;
+	}
+
+	/* Campaign: DET OKAY */
+	.det-okay { background: #1c1c1c; }
+
+	.det-okay-poster {
+		justify-content: flex-end;
+		gap: 2px;
+	}
+
+	.tag {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 900;
+		font-size: 2rem;
+		color: #e8e8e8;
+		line-height: 1;
+		letter-spacing: -0.02em;
+		display: block;
+	}
+
+	.tag.accent { color: #f5c4d0; }
+
+	/* Campaign: DIY */
+	.diy { background: #4a7c32; }
+
+	.diy-poster {
+		justify-content: center;
+		align-items: flex-start;
+		gap: 8px;
+	}
+
+	.diy-label {
+		font-family: 'Gasoek One', sans-serif;
+		font-size: 3.5rem;
+		color: white;
+		line-height: 1;
+		-webkit-text-stroke: 2px rgba(255,255,255,0.4);
+	}
+
+	.diy-sub {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 900;
+		font-size: 0.75rem;
+		color: rgba(255,255,255,0.9);
+		letter-spacing: 0.08em;
+		line-height: 1.4;
+	}
+
+	/* Campaign: BRAVE TOGETHER */
+	.brave-together { background: #1a3a5c; }
+
+	.brave-poster {
+		justify-content: space-between;
+		padding: 0;
+	}
+
+	.brave-top {
+		background: #c0392b;
+		color: white;
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 700;
+		font-size: 0.65rem;
+		letter-spacing: 0.1em;
+		padding: 8px 18px;
+		width: 100%;
+	}
+
+	.brave-main {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 900;
+		font-size: 2.2rem;
+		color: white;
+		line-height: 1;
+		letter-spacing: -0.02em;
+		padding: 0 18px 18px;
+		align-self: flex-end;
+	}
+
+	/* ── Card body ── */
+	.card-body {
+		padding: 16px 18px 18px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		flex: 1;
+	}
+
+	h3 {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 900;
+		font-size: 1rem;
+		color: var(--green);
+		margin: 0;
+	}
+
+	.meta {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.meta-item {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 400;
+		font-size: 0.8rem;
+		color: #666;
+	}
+
+	.meta-item svg {
+		flex-shrink: 0;
+		color: var(--green);
+	}
+
+	.cta {
+		display: inline-block;
+		margin-top: auto;
+		padding: 8px 18px;
+		background: var(--green);
+		color: white;
+		border-radius: 999px;
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 700;
+		font-size: 0.8rem;
+		align-self: flex-start;
+		transition: background 0.2s;
+	}
+
+	.card:hover .cta {
+		background: var(--green-highlight);
+	}
+</style>

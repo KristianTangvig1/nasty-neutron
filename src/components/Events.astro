@@ -1,0 +1,165 @@
+---
+const events = [
+	{
+		title: 'Kampagne Titel',
+		color: '#353635',
+		accent: '#F5F5F5',
+		label: 'DET ER OKAY',
+	},
+	{
+		title: 'Kampagne Titel',
+		color: '#78BA53',
+		accent: '#ffffff',
+		label: 'DIN UNGDOM ER EN STEMME',
+	},
+	{
+		title: 'Kampagne Titel',
+		color: '#C7E5F6',
+		accent: '#8064AB',
+		label: 'BRAVE TOGETHER',
+	},
+];
+---
+
+<section class="events">
+	<div class="container">
+		<h2>EVENTS</h2>
+		<p class="subtitle">
+			Vi holder løbende events og kampagner for unge i hele Danmark. Kom med og vær en del af
+			fællesskabet og hjælp os med at gøre en forskel.
+		</p>
+
+		<div class="cards">
+			{events.map((e) => (
+				<article class="card">
+					<div class="card-image" style={`background:${e.color};`}>
+						<span class="card-label" style={`color:${e.accent};`}>{e.label}</span>
+					</div>
+					<h3>{e.title}</h3>
+					<a href="/events" class="card-link">› Læs om kampagnen her</a>
+				</article>
+			))}
+		</div>
+
+		<div class="actions">
+			<a href="/events" class="btn btn-outline">se alle vores kommende events</a>
+			<a href="/events/ny" class="btn btn-green">lav et event</a>
+		</div>
+	</div>
+</section>
+
+<style>
+	.events {
+		background: var(--blue);
+		padding: 60px 32px;
+	}
+
+	.container {
+		max-width: 900px;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	h2 {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 900;
+		font-size: 2rem;
+		color: var(--purple);
+		margin: 0 0 16px;
+		letter-spacing: 0.02em;
+	}
+
+	.subtitle {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 400;
+		font-size: 1rem;
+		line-height: 1.6;
+		color: var(--text);
+		max-width: 600px;
+		margin: 0 auto 40px;
+	}
+
+	.cards {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 20px;
+		margin-bottom: 32px;
+	}
+
+	.card {
+		background: white;
+		border-radius: 16px;
+		overflow: hidden;
+		text-align: left;
+		padding-bottom: 16px;
+	}
+
+	.card-image {
+		height: 200px;
+		display: flex;
+		align-items: flex-end;
+		padding: 16px;
+	}
+
+	.card-label {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 900;
+		font-size: 0.85rem;
+		letter-spacing: 0.03em;
+		line-height: 1.2;
+	}
+
+	h3 {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 900;
+		font-size: 1rem;
+		color: var(--green);
+		margin: 16px 16px 8px;
+	}
+
+	.card-link {
+		display: block;
+		margin: 0 16px;
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 400;
+		font-size: 0.8rem;
+		color: var(--text);
+		text-decoration: underline;
+	}
+
+	.actions {
+		display: flex;
+		justify-content: center;
+		gap: 16px;
+		flex-wrap: wrap;
+	}
+
+	.btn {
+		display: inline-block;
+		padding: 12px 28px;
+		border-radius: 999px;
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 700;
+		font-size: 0.9rem;
+		transition: opacity 0.2s;
+	}
+
+	.btn:hover { opacity: 0.85; }
+
+	.btn-outline {
+		background: transparent;
+		border: 2px solid var(--text);
+		color: var(--text);
+	}
+
+	.btn-green {
+		background: var(--green);
+		color: white;
+	}
+
+	@media (max-width: 640px) {
+		.cards {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

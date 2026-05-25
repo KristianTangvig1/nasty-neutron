@@ -1,0 +1,105 @@
+---
+---
+
+<section class="om-headspace">
+	<div class="container">
+		<div class="content">
+			<h2>OM HEADSPACE</h2>
+			<p>
+				Head spacer er en forening hvor unge frivillige hjælper andre unge. Vi tilbyder en lav tærskel
+				for unge der har brug for nogen at tale med om deres problemer og følelser.
+			</p>
+			<a href="/om-os" class="btn-green">› Læs mere om os her</a>
+		</div>
+		<div class="illustration">
+			<svg viewBox="0 0 280 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+				<!-- Phone body -->
+				<rect x="80" y="60" width="120" height="200" rx="20" fill="#8064AB"/>
+				<rect x="90" y="80" width="100" height="160" rx="10" fill="#C7E5F6"/>
+				<!-- Chat bubble 1 -->
+				<rect x="100" y="100" width="70" height="28" rx="14" fill="#78BA53"/>
+				<polygon points="115,128 105,142 130,128" fill="#78BA53"/>
+				<!-- Chat bubble 2 -->
+				<rect x="110" y="155" width="60" height="28" rx="14" fill="#8064AB"/>
+				<circle cx="122" cy="169" r="4" fill="white"/>
+				<circle cx="135" cy="169" r="4" fill="white"/>
+				<circle cx="148" cy="169" r="4" fill="white"/>
+				<!-- Dots decoration -->
+				<circle cx="230" cy="100" r="12" fill="#78BA53" opacity="0.5"/>
+				<circle cx="55" cy="200" r="8" fill="#8064AB" opacity="0.5"/>
+				<circle cx="240" cy="220" r="6" fill="#D4BFFF" opacity="0.8"/>
+				<!-- Star / sparkle -->
+				<path d="M50 80 L54 90 L64 94 L54 98 L50 108 L46 98 L36 94 L46 90 Z" fill="#78BA53" opacity="0.7"/>
+			</svg>
+		</div>
+	</div>
+</section>
+
+<style>
+	.om-headspace {
+		background: var(--cream);
+		padding: 60px 32px;
+	}
+
+	.container {
+		max-width: 900px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 48px;
+		align-items: center;
+	}
+
+	h2 {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 900;
+		font-size: 2rem;
+		color: var(--green);
+		margin: 0 0 20px;
+		letter-spacing: 0.02em;
+	}
+
+	p {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 400;
+		font-size: 1rem;
+		line-height: 1.6;
+		color: var(--text);
+		margin: 0 0 28px;
+	}
+
+	.btn-green {
+		display: inline-block;
+		padding: 12px 28px;
+		background: var(--green);
+		color: white;
+		border-radius: 999px;
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 700;
+		font-size: 0.95rem;
+		transition: background 0.2s;
+	}
+
+	.btn-green:hover {
+		background: var(--green-highlight);
+	}
+
+	.illustration {
+		display: flex;
+		justify-content: center;
+	}
+
+	.illustration svg {
+		width: 100%;
+		max-width: 280px;
+	}
+
+	@media (max-width: 640px) {
+		.container {
+			grid-template-columns: 1fr;
+		}
+		.illustration {
+			display: none;
+		}
+	}
+</style>

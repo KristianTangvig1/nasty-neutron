@@ -1,23 +1,86 @@
 <!doctype html>
-<html lang="en">
+<html lang="da">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>headspace Danmark — Nogen at tale med</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Gasoek+One&display=swap" rel="stylesheet" />
 	</head>
 	<body>
 		<slot />
 	</body>
 </html>
 
-<style>
-	html,
-	body {
+<style is:global>
+	@font-face {
+		font-family: 'VAG Rounded';
+		font-weight: 700;
+		font-display: swap;
+		src: url('/fonts/OPTIVagRound-Bold.otf') format('opentype');
+	}
+
+	@font-face {
+		font-family: 'Agrandir';
+		font-weight: 400;
+		font-style: normal;
+		font-display: swap;
+		src: url('/fonts/agrandir-tight.otf') format('opentype');
+	}
+
+	@font-face {
+		font-family: 'Agrandir';
+		font-weight: 700;
+		font-style: normal;
+		font-display: swap;
+		src: url('/fonts/agrandir-bold.ttf') format('truetype');
+	}
+
+	@font-face {
+		font-family: 'Agrandir';
+		font-weight: 900;
+		font-style: normal;
+		font-display: swap;
+		src: url('/fonts/agrandir-black.ttf') format('truetype');
+	}
+
+	:root {
+		--green: #78BA53;
+		--green-highlight: #38B555;
+		--purple: #8064AB;
+		--text: #353635;
+		--cream: #FFF9F0;
+		--blue: #C7E5F6;
+		--lavender: #D4BFFF;
+		--maroon: #7B1A3A;
+	}
+
+	*, *::before, *::after {
+		box-sizing: border-box;
+	}
+
+	html, body {
 		margin: 0;
+		padding: 0;
 		width: 100%;
-		height: 100%;
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 400;
+		color: var(--text);
+		background: var(--cream);
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+		display: block;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
 	}
 </style>
