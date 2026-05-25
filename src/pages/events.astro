@@ -1,14 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
 import EventCard from '../components/EventCard.astro';
-import Footer from '../components/Footer.astro';
-
-const eventsNav = [
-	{ label: 'Kalenderen',   href: '/events',  variant: 'text'         as const },
-	{ label: 'Om Headspace', href: '/om-os',   variant: 'text'         as const },
-	{ label: 'Deltag',       href: '/deltag',  variant: 'pill-purple'  as const },
-];
 
 const days = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'];
 const activeDay = 'Onsdag';
@@ -16,20 +8,19 @@ const activeDay = 'Onsdag';
 type Campaign = 'det-okay' | 'diy' | 'brave-together';
 
 const events: { title: string; time: string; location: string; campaign: Campaign }[] = [
-	{ title: 'Kampagne Titel', time: 'Onsdag kl. 15.00',  location: 'København',  campaign: 'det-okay'      },
-	{ title: 'Kampagne Titel', time: 'Onsdag kl. 16.00',  location: 'Aarhus',     campaign: 'diy'           },
-	{ title: 'Kampagne Titel', time: 'Onsdag kl. 17.30',  location: 'Odense',     campaign: 'brave-together'},
-	{ title: 'Kampagne Titel', time: 'Onsdag kl. 12.00',  location: 'Aalborg',    campaign: 'det-okay'      },
-	{ title: 'Kampagne Titel', time: 'Onsdag kl. 14.00',  location: 'Roskilde',   campaign: 'diy'           },
-	{ title: 'Kampagne Titel', time: 'Onsdag kl. 18.00',  location: 'Esbjerg',    campaign: 'brave-together'},
-	{ title: 'Kampagne Titel', time: 'Onsdag kl. 11.00',  location: 'Helsingør',  campaign: 'det-okay'      },
-	{ title: 'Kampagne Titel', time: 'Onsdag kl. 13.00',  location: 'Vejle',      campaign: 'diy'           },
-	{ title: 'Kampagne Titel', time: 'Onsdag kl. 19.00',  location: 'Fredericia', campaign: 'brave-together'},
+	{ title: 'Kampagne Titel', time: 'Onsdag kl. 15.00', location: 'København',  campaign: 'det-okay'       },
+	{ title: 'Kampagne Titel', time: 'Onsdag kl. 16.00', location: 'Aarhus',     campaign: 'diy'            },
+	{ title: 'Kampagne Titel', time: 'Onsdag kl. 17.30', location: 'Odense',     campaign: 'brave-together' },
+	{ title: 'Kampagne Titel', time: 'Onsdag kl. 12.00', location: 'Aalborg',    campaign: 'det-okay'       },
+	{ title: 'Kampagne Titel', time: 'Onsdag kl. 14.00', location: 'Roskilde',   campaign: 'diy'            },
+	{ title: 'Kampagne Titel', time: 'Onsdag kl. 18.00', location: 'Esbjerg',    campaign: 'brave-together' },
+	{ title: 'Kampagne Titel', time: 'Onsdag kl. 11.00', location: 'Helsingør',  campaign: 'det-okay'       },
+	{ title: 'Kampagne Titel', time: 'Onsdag kl. 13.00', location: 'Vejle',      campaign: 'diy'            },
+	{ title: 'Kampagne Titel', time: 'Onsdag kl. 19.00', location: 'Fredericia', campaign: 'brave-together' },
 ];
 ---
 
-<Layout>
-	<Header navItems={eventsNav} />
+<Layout title="Events — headspace Danmark">
 
 	<!-- Hero -->
 	<section class="hero">
@@ -57,7 +48,6 @@ const events: { title: string; time: string; location: string; campaign: Campaig
 					<button class="filter-pill">Område</button>
 				</div>
 			</div>
-
 			<div class="day-group">
 				<span class="day-label">Kalender</span>
 				<div class="days">
@@ -77,17 +67,15 @@ const events: { title: string; time: string; location: string; campaign: Campaig
 					time={event.time}
 					location={event.location}
 					campaign={event.campaign}
-					href={`/events/${event.campaign}`}
+					href="/events"
 				/>
 			))}
 		</div>
 	</section>
 
-	<Footer />
 </Layout>
 
 <style>
-	/* ── Hero ── */
 	.hero {
 		width: 100%;
 		min-height: 320px;
@@ -105,11 +93,9 @@ const events: { title: string; time: string; location: string; campaign: Campaig
 		margin: 0;
 		color: transparent;
 		-webkit-text-stroke: 3px white;
-		text-stroke: 3px white;
 		letter-spacing: -0.01em;
 	}
 
-	/* ── Intro ── */
 	.intro {
 		background: var(--cream);
 		padding: 52px 32px 40px;
@@ -135,13 +121,11 @@ const events: { title: string; time: string; location: string; campaign: Campaig
 		margin: 0 auto;
 	}
 
-	/* ── Calendar section ── */
 	.calendar-section {
 		background: var(--blue);
 		padding: 40px 32px 60px;
 	}
 
-	/* Filter bar */
 	.filter-bar {
 		max-width: 960px;
 		margin: 0 auto 36px;
@@ -187,9 +171,7 @@ const events: { title: string; time: string; location: string; campaign: Campaig
 		color: white;
 	}
 
-	.day-group {
-		flex: 1;
-	}
+	.day-group { flex: 1; }
 
 	.days {
 		display: flex;
@@ -210,17 +192,12 @@ const events: { title: string; time: string; location: string; campaign: Campaig
 		transition: background 0.15s, color 0.15s;
 	}
 
-	.day-pill:hover {
+	.day-pill:hover,
+	.day-active {
 		background: var(--green);
 		color: white;
 	}
 
-	.day-active {
-		background: var(--green) !important;
-		color: white !important;
-	}
-
-	/* Cards grid */
 	.cards-grid {
 		max-width: 960px;
 		margin: 0 auto;
@@ -230,18 +207,11 @@ const events: { title: string; time: string; location: string; campaign: Campaig
 	}
 
 	@media (max-width: 768px) {
-		.cards-grid {
-			grid-template-columns: repeat(2, 1fr);
-		}
-		.filter-bar {
-			flex-direction: column;
-			gap: 24px;
-		}
+		.cards-grid { grid-template-columns: repeat(2, 1fr); }
+		.filter-bar { flex-direction: column; gap: 24px; }
 	}
 
 	@media (max-width: 480px) {
-		.cards-grid {
-			grid-template-columns: 1fr;
-		}
+		.cards-grid { grid-template-columns: 1fr; }
 	}
 </style>

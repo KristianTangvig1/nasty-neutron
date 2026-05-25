@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Info — headspace Danmark">
+	<section class="page-hero">
+		<h1>Info</h1>
+	</section>
+
+	<section class="content">
+		<p>Indhold kommer snart.</p>
+	</section>
+</Layout>
+
+<style>
+	.page-hero {
+		background: var(--lavender);
+		padding: 60px 32px 48px;
+	}
+
+	.page-hero h1 {
+		font-family: 'Gasoek One', sans-serif;
+		font-size: clamp(2.5rem, 8vw, 5rem);
+		font-weight: 400;
+		color: transparent;
+		-webkit-text-stroke: 3px var(--purple);
+		margin: 0;
+		max-width: 960px;
+	}
+
+	.content {
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 48px 32px;
+		font-family: 'Agrandir', sans-serif;
+		font-size: 1rem;
+		line-height: 1.7;
+		color: var(--text);
+	}
+</style>
