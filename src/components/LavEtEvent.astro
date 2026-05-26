@@ -1,0 +1,174 @@
+---
+---
+ </section>
+    <section class="lav-event_index">
+    <div class="lav-event_index_text">
+      <h1>HAR DU IDEER TIL ET NYT HEADSPACE EVENT?</h1>
+      <p>
+        Vi arbejder hele tiden på at finde nye måder at engagere flere mennesker
+        i at støtte unges trivsel.
+      </p>
+      <p>
+        Har du en idé til et fremtidigt Headspace-event? Udfyld formularen og send
+        den afsted til os — sammen skaber vi fællesskaber, hvor unge bliver set,
+        hørt og støttet.
+      </p>
+    </div>
+
+
+    <div class="lav-event_form">
+      <form>
+        <fieldset>
+          <legend>Personlige Oplysninger</legend>
+
+
+          <label for="name">Navn</label>
+          <input type="text" id="name" name="name">
+
+
+          <label for="phone">Telefon nummer</label>
+          <input type="tel" id="phone" name="phone">
+
+
+          <label for="email">Gmail</label>
+          <input type="email" id="email" name="email">
+        </fieldset>
+
+
+        <fieldset>
+          <legend>Dine Ideer</legend>
+
+
+          <label for="about">Skriv om dine ideer til et event! Giv gerne ideer til tid, sted, og indhold.</label>
+          <textarea id="about" name="about"></textarea>
+        </fieldset>
+
+
+        <button type="submit">send dit event!</button>
+      </form>
+    </div>
+    </section>
+
+
+
+
+    <style>
+    
+.lav-event_index {
+    width: 100%;
+    background-color: #D8CDE6; 
+    display: flex;
+    justify-content: center;
+    padding: 80px 0;
+    gap: 80px; 
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* --- VENSTRE TEKST --- */
+.lav-event_index_text {
+    max-width: 520px;
+}
+
+.lav-event_index_text h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #7DB742;
+    margin-bottom: 25px;
+}
+
+.lav-event_index_text p {
+    font-family: 'Agrandir', sans-serif;
+		font-weight: 200;
+		
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: #1A1A1A;
+    margin-bottom: 18px;
+}
+
+/* --- FORM BOKS (højre side) --- */
+.lav-event_form {
+    background: #FFFFFF;
+    border: 4px solid #5E357C; 
+    border-radius: 22px;
+    padding: 40px 45px;
+    width: 460px; 
+}
+
+/* Fieldset styling */
+.lav-event_form fieldset {
+    border: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.lav-event_form legend {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #5E357C;
+}
+
+/* Labels */
+.lav-event_form label {
+    display: block;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+/* Inputs + textarea */
+.lav-event_form input,
+.lav-event_form textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #000000;
+    border-radius: 12px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    background: #FFFFFF;
+}
+
+/* Tekstfelt */
+.lav-event_form textarea {
+    height: 120px;
+    resize: none;
+}
+
+/* Knap */
+.lav-event_form button {
+    width: 100%;
+    background: #CBBDDD; 
+    color: 5E357C;
+    padding: 16px 0;
+    border: none;
+    border-radius: 100px;
+   font-family: 'VAG Rounded', sans-serif;
+		font-weight: 700;
+		font-size: 1.5rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.2s ease;
+}
+
+.lav-event_form button:hover {
+    background: #DDD5E7;
+}
+
+/* --- RESPONSIVT --- */
+@media (max-width: 900px) {
+    .lav-event_index {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 50px;
+    }
+
+    .lav-event_form {
+        width: 100%;
+        max-width: 460px;
+    }
+}
+
+
+</style>
