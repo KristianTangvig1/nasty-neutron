@@ -36,7 +36,7 @@ import TilmeldingForm   from '../components/tilmelding/TilmeldingForm.astro';
 		import.meta.env.PUBLIC_SUPABASE_KEY,
 	);
 
-	// ── Campaign helpers ──────────────────────────────────────────────────────
+	// Campaign helpers
 
 	const titleToCampaign: Record<string, string> = {
 		'Gåtur':                    'det-okay',
@@ -54,7 +54,7 @@ import TilmeldingForm   from '../components/tilmelding/TilmeldingForm.astro';
 		'brave-together': 'BRAVE TOGETHER',
 	};
 
-	// ── Date helpers ──────────────────────────────────────────────────────────
+	// Date helpers
 
 	function formatDanishDate(dateStr: string): string {
 		const [year, month, day] = dateStr.split('-').map(Number);
@@ -67,7 +67,7 @@ import TilmeldingForm   from '../components/tilmelding/TilmeldingForm.astro';
 		return 'kl. ' + timeStr.slice(0, 5).replace(':', '.');
 	}
 
-	// ── DOM helpers ───────────────────────────────────────────────────────────
+	// DOM helpers
 
 	const show = (id: string) => { (document.getElementById(id)!).style.display = ''; };
 	const hide = (id: string) => { (document.getElementById(id)!).style.display = 'none'; };
@@ -82,7 +82,7 @@ import TilmeldingForm   from '../components/tilmelding/TilmeldingForm.astro';
 			.join('');
 	}
 
-	// ── Fetch event from URL param ────────────────────────────────────────────
+	// Fetch event from URL param
 
 	const params  = new URLSearchParams(window.location.search);
 	const eventId = params.get('id');
