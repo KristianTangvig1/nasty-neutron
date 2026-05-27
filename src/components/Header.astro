@@ -10,9 +10,9 @@ interface Props {
 }
 
 const defaultNav: NavItem[] = [
-	{ label: 'events',  href: '/events',      variant: 'pill-purple' },
-	{ label: 'deltag',  href: '/tilmelding', variant: 'pill-green'  },
-	{ label: 'om os',   href: '/info',        variant: 'pill-blue'   },
+	{ label: 'hjem',   href: '/',       variant: 'pill-green'  },
+	{ label: 'events', href: '/events', variant: 'pill-purple' },
+	{ label: 'om os',  href: '/info',   variant: 'pill-blue'   },
 ];
 
 const { navItems = defaultNav } = Astro.props;
