@@ -1,174 +1,186 @@
 ---
 ---
- </section>
-    <section class="lav-event_index">
-    <div class="lav-event_index_text">
-      <h1>HAR DU IDEER TIL ET NYT HEADSPACE EVENT?</h1>
-      <p>
-        Vi arbejder hele tiden på at finde nye måder at engagere flere mennesker
-        i at støtte unges trivsel.
-      </p>
-      <p>
-        Har du en idé til et fremtidigt Headspace-event? Udfyld formularen og send
-        den afsted til os — sammen skaber vi fællesskaber, hvor unge bliver set,
-        hørt og støttet.
-      </p>
-    </div>
 
+<section class="lav-event_index">
+	<div class="lav-event_inner">
 
-    <div class="lav-event_form">
-      <form>
-        <fieldset>
-          <legend>Personlige Oplysninger</legend>
+		<div class="lav-event_index_text">
+			<h1>HAR DU IDEER TIL ET NYT HEADSPACE EVENT?</h1>
+			<p>
+				Vi arbejder hele tiden på at finde nye måder at engagere flere mennesker
+				i at støtte unges trivsel.
+			</p>
+			<p>
+				Har du en idé til et fremtidigt Headspace-event? Udfyld formularen og send
+				den afsted til os — sammen skaber vi fællesskaber, hvor unge bliver set,
+				hørt og støttet.
+			</p>
+		</div>
 
+		<div class="lav-event_form-wrap">
+			<div class="lav-event_form">
+				<form>
+					<fieldset>
+						<legend>Personlige Oplysninger</legend>
 
-          <label for="name">Navn</label>
-          <input type="text" id="name" name="name">
+						<label for="name">Navn</label>
+						<input type="text" id="name" name="name">
 
+						<label for="phone">Telefon nummer</label>
+						<input type="tel" id="phone" name="phone">
 
-          <label for="phone">Telefon nummer</label>
-          <input type="tel" id="phone" name="phone">
+						<label for="email">Gmail</label>
+						<input type="email" id="email" name="email">
+					</fieldset>
 
+					<fieldset>
+						<legend>Dine Ideer</legend>
 
-          <label for="email">Gmail</label>
-          <input type="email" id="email" name="email">
-        </fieldset>
+						<label for="about">Skriv om dine ideer til et event! Giv gerne ideer til tid, sted, og indhold.</label>
+						<textarea id="about" name="about"></textarea>
+					</fieldset>
 
+					<button type="submit">send dit event!</button>
+				</form>
+			</div>
+		</div>
 
-        <fieldset>
-          <legend>Dine Ideer</legend>
+	</div>
+</section>
 
+<style>
+	/* ── Section shell ── */
+	.lav-event_index {
+		width: 100%;
+		background-color: #D8CDE6;
+		padding: 80px 32px;
+	}
 
-          <label for="about">Skriv om dine ideer til et event! Giv gerne ideer til tid, sted, og indhold.</label>
-          <textarea id="about" name="about"></textarea>
-        </fieldset>
+	/* ── Inner container — mirrors SoMe's .container ── */
+	.lav-event_inner {
+		max-width: 900px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 48px;
+		align-items: center;
+	}
 
+	/* ── Left: text ── */
+	.lav-event_index_text h1 {
+		font-family: 'Agrandir', sans-serif;
+		font-size: clamp(1.8rem, 4vw, 2.8rem);
+		font-weight: 900;
+		color: #7DB742;
+		margin: 0 0 20px;
+		line-height: 1.1;
+	}
 
-        <button type="submit">send dit event!</button>
-      </form>
-    </div>
-    </section>
+	.lav-event_index_text p {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 400;
+		font-size: 1rem;
+		line-height: 1.7;
+		color: #1A1A1A;
+		margin: 0 0 16px;
+	}
 
+	/* ── Right: form wrap — mirrors SoMe's .video-card ── */
+	.lav-event_form-wrap {
+		max-width: 75%;
+		margin: 0 auto;
+	}
 
+	/* ── Form card ── */
+	.lav-event_form {
+		background: #FFFFFF;
+		border: 4px solid #5E357C;
+		border-radius: 20px;
+		padding: 20px 24px;
+		box-shadow: 0 6px 28px rgba(0,0,0,0.10);
+		box-sizing: border-box;
+		width: 100%;
+	}
 
+	/* Fieldset */
+	.lav-event_form fieldset {
+		border: none;
+		padding: 0;
+		margin-bottom: 12px;
+	}
 
-    <style>
-    
-.lav-event_index {
-    width: 100%;
-    background-color: #D8CDE6; 
-    display: flex;
-    justify-content: center;
-    padding: 80px 0;
-    gap: 80px; 
-    font-family: "Segoe UI", sans-serif;
-}
-
-/* --- VENSTRE TEKST --- */
-.lav-event_index_text {
-    max-width: 520px;
-}
-
-.lav-event_index_text h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    color: #7DB742;
-    margin-bottom: 25px;
-}
-
-.lav-event_index_text p {
-    font-family: 'Agrandir', sans-serif;
-		font-weight: 200;
-		
-    font-size: 1.2rem;
-    line-height: 1.7;
-    color: #1A1A1A;
-    margin-bottom: 18px;
-}
-
-/* --- FORM BOKS (højre side) --- */
-.lav-event_form {
-    background: #FFFFFF;
-    border: 4px solid #5E357C; 
-    border-radius: 22px;
-    padding: 40px 45px;
-    width: 460px; 
-}
-
-/* Fieldset styling */
-.lav-event_form fieldset {
-    border: none;
-    padding: 0;
-    margin-bottom: 30px;
-}
-
-.lav-event_form legend {
-    font-size: 1.35rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: #5E357C;
-}
-
-/* Labels */
-.lav-event_form label {
-    display: block;
-    font-size: 1.05rem;
-    font-weight: 600;
-    margin-bottom: 6px;
-}
-
-/* Inputs + textarea */
-.lav-event_form input,
-.lav-event_form textarea {
-    width: 100%;
-    padding: 14px 16px;
-    border: 2px solid #000000;
-    border-radius: 12px;
-    font-size: 1rem;
-    margin-bottom: 20px;
-    background: #FFFFFF;
-}
-
-/* Tekstfelt */
-.lav-event_form textarea {
-    height: 120px;
-    resize: none;
-}
-
-/* Knap */
-.lav-event_form button {
-    width: 100%;
-    background: #CBBDDD; 
-    color: 5E357C;
-    padding: 16px 0;
-    border: none;
-    border-radius: 100px;
-   font-family: 'VAG Rounded', sans-serif;
+	.lav-event_form legend {
+		font-family: 'Agrandir', sans-serif;
+		font-size: 0.95rem;
 		font-weight: 700;
-		font-size: 1.5rem;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: 0.2s ease;
-}
+		margin-bottom: 8px;
+		color: #5E357C;
+	}
 
-.lav-event_form button:hover {
-    background: #DDD5E7;
-}
+	/* Labels */
+	.lav-event_form label {
+		display: block;
+		font-family: 'Agrandir', sans-serif;
+		font-size: 0.8rem;
+		font-weight: 700;
+		margin-bottom: 3px;
+		color: #1A1A1A;
+	}
 
-/* --- RESPONSIVT --- */
-@media (max-width: 900px) {
-    .lav-event_index {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 50px;
-    }
+	/* Inputs + textarea */
+	.lav-event_form input,
+	.lav-event_form textarea {
+		width: 100%;
+		padding: 7px 12px;
+		border: 1.5px solid #000000;
+		border-radius: 8px;
+		font-family: 'Agrandir', sans-serif;
+		font-size: 0.85rem;
+		margin-bottom: 8px;
+		background: #FFFFFF;
+		box-sizing: border-box;
+		outline: none;
+		transition: border-color 0.15s;
+	}
 
-    .lav-event_form {
-        width: 100%;
-        max-width: 460px;
-    }
-}
+	.lav-event_form input:focus,
+	.lav-event_form textarea:focus {
+		border-color: #5E357C;
+	}
 
+	.lav-event_form textarea {
+		height: 70px;
+		resize: none;
+	}
 
+	/* Submit button */
+	.lav-event_form button {
+		width: 100%;
+		background: #CBBDDD;
+		color: #5E357C;
+		padding: 10px 0;
+		border: none;
+		border-radius: 999px;
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 700;
+		font-size: 0.9rem;
+		cursor: pointer;
+		margin-top: 4px;
+		transition: opacity 0.2s;
+	}
+
+	.lav-event_form button:hover {
+		opacity: 0.85;
+	}
+
+	/* ── Responsive ── */
+	@media (max-width: 640px) {
+		.lav-event_inner {
+			grid-template-columns: 1fr;
+		}
+
+		.lav-event_form-wrap {
+			max-width: 100%;
+		}
+	}
 </style>

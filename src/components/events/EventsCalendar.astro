@@ -1,0 +1,102 @@
+---
+import EventFilterBar from './EventFilterBar.astro';
+import EventsGrid     from './EventsGrid.astro';
+import type { EventItem } from '../../lib/types';
+
+interface Props {
+	events:    EventItem[];
+	days:      string[];
+	locations: string[];
+}
+
+const { events, days, locations } = Astro.props;
+---
+
+<section class="calendar-section">
+	<EventFilterBar days={days} locations={locations} />
+	<EventsGrid events={events} />
+</section>
+
+<!-- Client-side filtering — wires up EventFilterBar pills to EventsGrid cards -->
+<script>
+	let activeDay:      string | null = null;
+	let activeLocation: string | null = null;
+
+	const cards       = Array.from(document.querySelectorAll<HTMLElement>('.card-wrapper'));
+	const emptyState  = document.getElementById('empty-state')!;
+	const activeBar   = document.getElementById('active-filters')!;
+	const filterText  = document.getElementById('filter-text')!;
+	const clearBtn    = document.getElementById('clear-filters')!;
+	const dagGroup    = document.getElementById('dag-group')!;
+	const omradeGroup = document.getElementById('omrade-group')!;
+
+	function applyFilters() {
+		let visible = 0;
+
+		cards.forEach(card => {
+			const dayMatch = !activeDay      || card.dataset.day      === activeDay;
+			const locMatch = !activeLocation || card.dataset.location === activeLocation;
+			card.style.display = dayMatch && locMatch ? '' : 'none';
+			if (dayMatch && locMatch) visible++;
+		});
+
+		emptyState.style.display = visible === 0 ? '' : 'none';
+
+		const parts: string[] = [];
+		if (activeDay)      parts.push(`📅 ${activeDay}`);
+		if (activeLocation) parts.push(`📍 ${activeLocation}`);
+
+		filterText.textContent  = parts.join(' · ');
+		activeBar.style.display = parts.length > 0 ? '' : 'none';
+	}
+
+	// Toggle Dag ↔ Område
+	document.querySelectorAll<HTMLButtonElement>('.filter-pill[data-filter]').forEach(pill => {
+		pill.addEventListener('click', () => {
+			document.querySelectorAll('.filter-pill[data-filter]').forEach(p => p.classList.remove('active-filter'));
+			pill.classList.add('active-filter');
+			const isDag = pill.dataset.filter === 'dag';
+			dagGroup.classList.toggle('hidden', !isDag);
+			omradeGroup.classList.toggle('hidden', isDag);
+		});
+	});
+
+	// Day pills
+	document.querySelectorAll<HTMLButtonElement>('.pill[data-day]').forEach(btn => {
+		btn.addEventListener('click', () => {
+			const day = btn.dataset.day!;
+			const isActive = activeDay === day;
+			activeDay = isActive ? null : day;
+			document.querySelectorAll('.pill[data-day]').forEach(b => b.classList.remove('active'));
+			if (!isActive) btn.classList.add('active');
+			applyFilters();
+		});
+	});
+
+	// Location pills
+	document.querySelectorAll<HTMLButtonElement>('.location-pill[data-location]').forEach(btn => {
+		btn.addEventListener('click', () => {
+			const loc = btn.dataset.location!;
+			const isActive = activeLocation === loc;
+			activeLocation = isActive ? null : loc;
+			document.querySelectorAll('.location-pill[data-location]').forEach(b => b.classList.remove('active'));
+			if (!isActive) btn.classList.add('active');
+			applyFilters();
+		});
+	});
+
+	// Clear all
+	clearBtn.addEventListener('click', () => {
+		activeDay      = null;
+		activeLocation = null;
+		document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
+		applyFilters();
+	});
+</script>
+
+<style>
+	.calendar-section {
+		background: var(--blue);
+		padding: 40px 32px 60px;
+	}
+</style>
