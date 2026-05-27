@@ -2,7 +2,11 @@
 ---
 
 <section class="hero">
-	<span class="photo-credit">photo credit</span>
+	<video class="hero-video" autoplay muted loop playsinline>
+		<source src="/video/Herovid.mp4" type="video/mp4" />
+	</video>
+	<div class="hero-overlay"></div>
+
 	<div class="hero-text">
 		<h1 class="hero-title">HEADSPACE</h1>
 		<p class="hero-subtitle">Nogen At Tale Med</p>
@@ -13,29 +17,32 @@
 	.hero {
 		position: relative;
 		width: 100%;
-		min-height: 480px;
-		background-color: var(--green);
-		background-image:
-			radial-gradient(ellipse at 30% 60%, rgba(56,181,85,0.4) 0%, transparent 60%),
-			radial-gradient(ellipse at 70% 30%, rgba(120,186,83,0.3) 0%, transparent 50%);
+		height: 70vh;
 		display: flex;
 		align-items: flex-end;
 		overflow: hidden;
 	}
 
-	.photo-credit {
+	.hero-video {
 		position: absolute;
-		top: 16px;
-		left: 20px;
-		font-family: 'Agrandir', sans-serif;
-		font-size: 0.7rem;
-		color: rgba(255,255,255,0.7);
-		letter-spacing: 0.05em;
-		text-transform: lowercase;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		z-index: 0;
+	}
+
+	.hero-overlay {
+		position: absolute;
+		inset: 0;
+		background: rgba(50, 100, 30, 0.52);
+		z-index: 1;
 	}
 
 	.hero-text {
-		padding: 0 32px 40px;
+		position: relative;
+		z-index: 2;
+		padding: 0 32px 48px;
 	}
 
 	.hero-title {
@@ -44,9 +51,7 @@
 		font-weight: 400;
 		line-height: 0.95;
 		margin: 0 0 8px;
-		color: transparent;
-		-webkit-text-stroke: 3px #ffffff;
-		text-stroke: 3px #ffffff;
+		color: white;
 		letter-spacing: -0.01em;
 	}
 

@@ -8,30 +8,18 @@ interface Props {
 }
 
 const { title, time, location, campaign, href = '#' } = Astro.props;
+
+const campaignImage: Record<string, string> = {
+	'det-okay':       '/images/DetOkay-kampagner.webp',
+	'diy':            '/images/Ungdommens-stemme-2.webp',
+	'brave-together': '/images/Maybelline.webp',
+};
 ---
 
 <article class="card">
 	<a href={href}>
-		<div class:list={['card-image', campaign]}>
-			{campaign === 'det-okay' && (
-				<div class="poster det-okay-poster">
-					<span class="tag">DET</span>
-					<span class="tag">ER</span>
-					<span class="tag accent">OKAY</span>
-				</div>
-			)}
-			{campaign === 'diy' && (
-				<div class="poster diy-poster">
-					<span class="diy-label">DIY</span>
-					<span class="diy-sub">UNGDOMMEN<br/>EN STEMME</span>
-				</div>
-			)}
-			{campaign === 'brave-together' && (
-				<div class="poster brave-poster">
-					<div class="brave-top">MAYBELLINE x headspace</div>
-					<div class="brave-main">BRAVE<br/>TOGETHER</div>
-				</div>
-			)}
+		<div class="card-image">
+			<img src={campaignImage[campaign]} alt={title} />
 		</div>
 
 		<div class="card-body">
@@ -75,93 +63,20 @@ const { title, time, location, campaign, href = '#' } = Astro.props;
 	/* ── Image area ── */
 	.card-image {
 		height: 190px;
-		position: relative;
 		overflow: hidden;
 		flex-shrink: 0;
 	}
 
-	.poster {
+	.card-image img {
 		width: 100%;
 		height: 100%;
-		display: flex;
-		flex-direction: column;
-		padding: 18px;
-	}
-
-	/* Campaign: DET OKAY */
-	.det-okay { background: #1c1c1c; }
-
-	.det-okay-poster {
-		justify-content: flex-end;
-		gap: 2px;
-	}
-
-	.tag {
-		font-family: 'Agrandir', sans-serif;
-		font-weight: 900;
-		font-size: 2rem;
-		color: #e8e8e8;
-		line-height: 1;
-		letter-spacing: -0.02em;
+		object-fit: cover;
 		display: block;
+		transition: transform 0.3s ease;
 	}
 
-	.tag.accent { color: #f5c4d0; }
-
-	/* Campaign: DIY */
-	.diy { background: #4a7c32; }
-
-	.diy-poster {
-		justify-content: center;
-		align-items: flex-start;
-		gap: 8px;
-	}
-
-	.diy-label {
-		font-family: 'Gasoek One', sans-serif;
-		font-size: 3.5rem;
-		color: white;
-		line-height: 1;
-		-webkit-text-stroke: 2px rgba(255,255,255,0.4);
-	}
-
-	.diy-sub {
-		font-family: 'Agrandir', sans-serif;
-		font-weight: 900;
-		font-size: 0.75rem;
-		color: rgba(255,255,255,0.9);
-		letter-spacing: 0.08em;
-		line-height: 1.4;
-	}
-
-	/* Campaign: BRAVE TOGETHER */
-	.brave-together { background: #1a3a5c; }
-
-	.brave-poster {
-		justify-content: space-between;
-		padding: 0;
-	}
-
-	.brave-top {
-		background: #c0392b;
-		color: white;
-		font-family: 'Agrandir', sans-serif;
-		font-weight: 700;
-		font-size: 0.65rem;
-		letter-spacing: 0.1em;
-		padding: 8px 18px;
-		width: 100%;
-	}
-
-	.brave-main {
-		font-family: 'Agrandir', sans-serif;
-		font-weight: 900;
-		font-size: 2.2rem;
-		color: white;
-		line-height: 1;
-		letter-spacing: -0.02em;
-		padding: 0 18px 18px;
-		align-self: flex-end;
+	.card:hover .card-image img {
+		transform: scale(1.04);
 	}
 
 	/* ── Card body ── */

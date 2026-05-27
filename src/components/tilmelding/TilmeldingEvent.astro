@@ -1,0 +1,170 @@
+---
+---
+
+<section class="event-section" id="event-section">
+	<div class="event-inner">
+
+		<!-- Campaign name + date (populated by JS) -->
+		<div class="event-header">
+			<h1 id="campaign-name"></h1>
+			<p id="event-date" class="event-date"></p>
+		</div>
+
+		<!-- Two columns: text left · poster right -->
+		<div class="event-body">
+
+			<div class="event-left">
+				<p id="event-title" class="event-title"></p>
+				<div id="event-description" class="event-description"></div>
+				<div class="chips">
+					<span class="chip" id="chip-time"></span>
+					<span class="chip" id="chip-location"></span>
+				</div>
+			</div>
+
+			<!-- Campaign poster — JS sets data-campaign; CSS shows the right visual -->
+			<div class="event-right">
+				<div class="poster-display" id="poster-display" data-campaign="">
+
+					<div class="poster-visual det-okay-visual">
+						<img src="/images/DetOkay-kampagner.webp" alt="Det Okay kampagne" />
+					</div>
+
+					<div class="poster-visual diy-visual">
+						<img src="/images/Ungdommens-stemme-2.webp" alt="DIY kampagne" />
+					</div>
+
+					<div class="poster-visual brave-visual">
+						<img src="/images/Maybelline.webp" alt="Brave Together kampagne" />
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+<style>
+	/* ── Section shell ── */
+	.event-section {
+		background: var(--blue);
+		padding: 52px 32px 48px;
+	}
+
+	/* Campaign-specific backgrounds */
+	.event-section[data-campaign="det-okay"]      { background: var(--blue); }
+	.event-section[data-campaign="diy"]            { background: #d4f0bc; }
+	.event-section[data-campaign="brave-together"] { background: var(--lavender); }
+
+	.event-inner {
+		max-width: 960px;
+		margin: 0 auto;
+	}
+
+	/* ── Header ── */
+	.event-header {
+		text-align: center;
+		margin-bottom: 40px;
+	}
+
+	.event-header h1 {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 900;
+		font-size: clamp(2rem, 6vw, 3.5rem);
+		color: var(--purple);
+		margin: 0 0 8px;
+		letter-spacing: 0.02em;
+	}
+
+	.event-date {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 700;
+		font-size: 1rem;
+		color: var(--text);
+		margin: 0;
+	}
+
+	/* ── Two-column body ── */
+	.event-body {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 40px;
+		align-items: start;
+	}
+
+	/* ── Left: text ── */
+	.event-title {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 900;
+		font-size: 1.1rem;
+		color: var(--green);
+		margin-bottom: 16px;
+	}
+
+	.event-description p {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 400;
+		font-size: 0.95rem;
+		line-height: 1.7;
+		color: var(--text);
+		margin: 0 0 14px;
+	}
+
+	.chips {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		margin-top: 24px;
+	}
+
+	.chip {
+		display: inline-block;
+		padding: 8px 16px;
+		border-radius: 8px;
+		background: rgba(255,255,255,0.6);
+		border: 1.5px solid var(--green);
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 700;
+		font-size: 0.82rem;
+		color: var(--text);
+		align-self: flex-start;
+	}
+
+	/* ── Right: campaign poster ── */
+	.poster-display { width: 100%; }
+
+	/* Hide all visuals; show the matching one via data-campaign */
+	.poster-visual { display: none; }
+
+	.poster-display[data-campaign="det-okay"]      .det-okay-visual { display: block; }
+	.poster-display[data-campaign="diy"]            .diy-visual      { display: block; }
+	.poster-display[data-campaign="brave-together"] .brave-visual    { display: block; }
+
+	/* ── Campaign photo poster ── */
+	.poster-visual {
+		border-radius: 18px;
+		overflow: hidden;
+		aspect-ratio: 3 / 4;
+		box-shadow: 0 8px 32px rgba(0,0,0,0.14);
+	}
+
+	.poster-visual img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	/* ── Responsive ── */
+	@media (max-width: 680px) {
+		.event-body { grid-template-columns: 1fr; }
+
+		.event-right {
+			order: -1;
+			max-width: 340px;
+			margin: 0 auto;
+			width: 100%;
+		}
+	}
+</style>

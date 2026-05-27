@@ -10,6 +10,7 @@
       <a href="/info" class="btn-green">› Læs mere om os her</a>
     </div>
     <div class="illustration">
+      <img src="/images/pigeVindue.webp" class="photo-layer" alt="headspace" />
       <svg width="465" height="435" viewBox="0 0 465 435" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <rect y="64.8943" width="410.538" height="374.666" transform="rotate(-9.09497 0 64.8943)" fill="url(#pattern0_646_1339)"></rect>
         <defs>
@@ -79,14 +80,33 @@
   }
 
   .illustration {
-    display: flex;
-    justify-content: center;
-    rotate: -25deg;
+    position: relative;
+    height: 440px;
   }
 
+  /* Back layer: photo, rotated the opposite way */
+  .photo-layer {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 80%;
+    height: 95%;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 14px;
+    transform: rotate(4deg);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.15);
+  }
+
+  /* Front layer: SVG illustration, rotated over the photo */
   .illustration svg {
-    width: 100%;
-    max-width: 280px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 65%;
+    max-width: 240px;
+    transform: rotate(-9deg);
+    filter: drop-shadow(0 6px 20px rgba(0,0,0,0.18));
   }
 
   @media (max-width: 640px) {
