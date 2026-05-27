@@ -23,5 +23,5 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# large video files (too big for GitHub — keep locally)
-public/video/*.mp4
+# oversized video files (too big for GitHub)
+public/video/somevideo.mp4
