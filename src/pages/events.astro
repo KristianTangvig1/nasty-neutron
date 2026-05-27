@@ -1,217 +1,166 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import EventCard from '../components/EventCard.astro';
+import Layout        from '../layouts/Layout.astro';
+import { supabase }  from '../lib/supabase';
+import type { Campaign, EventItem } from '../lib/types';
 
-const days = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'];
-const activeDay = 'Onsdag';
+import EventsHero      from '../components/events/EventsHero.astro';
+import EventsIntro     from '../components/events/EventsIntro.astro';
+import EventFilterBar  from '../components/events/EventFilterBar.astro';
+import EventsGrid      from '../components/events/EventsGrid.astro';
 
-type Campaign = 'det-okay' | 'diy' | 'brave-together';
+// ── Helpers ──────────────────────────────────────────────────────────────────
 
-const events: { title: string; time: string; location: string; campaign: Campaign }[] = [
-	{ title: 'Kampagne Titel', time: 'Onsdag kl. 15.00', location: 'København',  campaign: 'det-okay'       },
-	{ title: 'Kampagne Titel', time: 'Onsdag kl. 16.00', location: 'Aarhus',     campaign: 'diy'            },
-	{ title: 'Kampagne Titel', time: 'Onsdag kl. 17.30', location: 'Odense',     campaign: 'brave-together' },
-	{ title: 'Kampagne Titel', time: 'Onsdag kl. 12.00', location: 'Aalborg',    campaign: 'det-okay'       },
-	{ title: 'Kampagne Titel', time: 'Onsdag kl. 14.00', location: 'Roskilde',   campaign: 'diy'            },
-	{ title: 'Kampagne Titel', time: 'Onsdag kl. 18.00', location: 'Esbjerg',    campaign: 'brave-together' },
-	{ title: 'Kampagne Titel', time: 'Onsdag kl. 11.00', location: 'Helsingør',  campaign: 'det-okay'       },
-	{ title: 'Kampagne Titel', time: 'Onsdag kl. 13.00', location: 'Vejle',      campaign: 'diy'            },
-	{ title: 'Kampagne Titel', time: 'Onsdag kl. 19.00', location: 'Fredericia', campaign: 'brave-together' },
-];
+const titleToCampaign: Record<string, Campaign> = {
+	'Gåtur':                    'det-okay',
+	'Løb med Headspace':        'diy',
+	'Foredrag med influencer':  'diy',
+	'Brætspilscafe':            'brave-together',
+	'Koncert med musiker':      'brave-together',
+	'Headspace LAN event':      'diy',
+	'Intimkoncert med musiker': 'brave-together',
+};
+
+function getDanishDay(dateStr: string): string {
+	const [year, month, day] = dateStr.split('-').map(Number);
+	const name = new Date(year, month - 1, day).toLocaleDateString('da-DK', { weekday: 'long' });
+	return name.charAt(0).toUpperCase() + name.slice(1);
+}
+
+function formatTime(timeStr: string): string {
+	return 'kl. ' + timeStr.slice(0, 5).replace(':', '.');
+}
+
+// ── Data fetching ─────────────────────────────────────────────────────────────
+
+const { data: rows, error } = await supabase
+	.from('headspace')
+	.select('*')
+	.order('dato', { ascending: true })
+	.order('tid',  { ascending: true });
+
+if (error) console.error('Supabase fejl:', error.message);
+
+// ── Transform rows to EventItem objects ───────────────────────────────────────
+
+const events: EventItem[] = (rows ?? []).map(row => ({
+	id:          row.id          as number,
+	title:       row.titel       as string,
+	beskrivelse: row.beskrivelse as string,
+	day:         getDanishDay(row.dato as string),
+	time:        `${getDanishDay(row.dato as string)} ${formatTime(row.tid as string)}`,
+	location:    row.sted        as string,
+	campaign:    (titleToCampaign[row.titel as string] ?? 'det-okay') as Campaign,
+}));
+
+// ── Derived filter data ───────────────────────────────────────────────────────
+
+const allDays   = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag', 'Søndag'];
+const eventDays = new Set(events.map(e => e.day));
+const days      = allDays.filter(d => eventDays.has(d));
+
+const locations = [...new Set(events.map(e => e.location))].sort();
 ---
 
 <Layout title="Events — headspace Danmark">
 
-	<!-- Hero -->
-	<section class="hero">
-		<div class="hero-text">
-			<h1>Headspace<br/>Kalenderen</h1>
-		</div>
-	</section>
+	<EventsHero />
 
-	<!-- Intro -->
-	<section class="intro">
-		<h2>EVENTS</h2>
-		<p>
-			Vi holder løbende events og kampagner for unge i hele Danmark. Kom med og vær en del af
-			fællesskabet og hjælp os med at gøre en forskel.
-		</p>
-	</section>
+	<EventsIntro />
 
-	<!-- Filter + Calendar + Cards -->
 	<section class="calendar-section">
-		<div class="filter-bar">
-			<div class="filter-group">
-				<span class="filter-label">Filter</span>
-				<div class="filters">
-					<button class="filter-pill active-filter">Dag</button>
-					<button class="filter-pill">Område</button>
-				</div>
-			</div>
-			<div class="day-group">
-				<span class="day-label">Kalender</span>
-				<div class="days">
-					{days.map((day) => (
-						<button class:list={['day-pill', { 'day-active': day === activeDay }]}>
-							{day}
-						</button>
-					))}
-				</div>
-			</div>
-		</div>
-
-		<div class="cards-grid">
-			{events.map((event) => (
-				<EventCard
-					title={event.title}
-					time={event.time}
-					location={event.location}
-					campaign={event.campaign}
-					href="/events"
-				/>
-			))}
-		</div>
+		<EventFilterBar days={days} locations={locations} />
+		<EventsGrid events={events} />
 	</section>
 
 </Layout>
 
+<!-- Filtering logic — runs client-side, orchestrates EventFilterBar + EventsGrid -->
+<script>
+	let activeDay:      string | null = null;
+	let activeLocation: string | null = null;
+
+	const cards      = Array.from(document.querySelectorAll<HTMLElement>('.card-wrapper'));
+	const emptyState = document.getElementById('empty-state')!;
+	const activeBar  = document.getElementById('active-filters')!;
+	const filterText = document.getElementById('filter-text')!;
+	const clearBtn   = document.getElementById('clear-filters')!;
+	const dagGroup   = document.getElementById('dag-group')!;
+	const omradeGroup = document.getElementById('omrade-group')!;
+
+	// ── Apply current filters to the card grid ────────────────────────────────
+	function applyFilters() {
+		let visible = 0;
+
+		cards.forEach(card => {
+			const dayMatch = !activeDay      || card.dataset.day      === activeDay;
+			const locMatch = !activeLocation || card.dataset.location === activeLocation;
+			card.style.display = dayMatch && locMatch ? '' : 'none';
+			if (dayMatch && locMatch) visible++;
+		});
+
+		emptyState.style.display = visible === 0 ? '' : 'none';
+
+		// Update active filter indicator
+		const parts: string[] = [];
+		if (activeDay)      parts.push(`📅 ${activeDay}`);
+		if (activeLocation) parts.push(`📍 ${activeLocation}`);
+
+		filterText.textContent      = parts.join(' · ');
+		activeBar.style.display     = parts.length > 0 ? '' : 'none';
+	}
+
+	// ── Filter type toggle (Dag ↔ Område) ─────────────────────────────────────
+	document.querySelectorAll<HTMLButtonElement>('.filter-pill[data-filter]').forEach(pill => {
+		pill.addEventListener('click', () => {
+			document.querySelectorAll('.filter-pill[data-filter]').forEach(p => p.classList.remove('active-filter'));
+			pill.classList.add('active-filter');
+
+			const isDag = pill.dataset.filter === 'dag';
+			dagGroup.classList.toggle('hidden', !isDag);
+			omradeGroup.classList.toggle('hidden', isDag);
+		});
+	});
+
+	// ── Day pills ─────────────────────────────────────────────────────────────
+	document.querySelectorAll<HTMLButtonElement>('.pill[data-day]').forEach(btn => {
+		btn.addEventListener('click', () => {
+			const day = btn.dataset.day!;
+			const isActive = activeDay === day;
+
+			activeDay = isActive ? null : day;
+			document.querySelectorAll('.pill[data-day]').forEach(b => b.classList.remove('active'));
+			if (!isActive) btn.classList.add('active');
+
+			applyFilters();
+		});
+	});
+
+	// ── Location pills ────────────────────────────────────────────────────────
+	document.querySelectorAll<HTMLButtonElement>('.location-pill[data-location]').forEach(btn => {
+		btn.addEventListener('click', () => {
+			const loc = btn.dataset.location!;
+			const isActive = activeLocation === loc;
+
+			activeLocation = isActive ? null : loc;
+			document.querySelectorAll('.location-pill[data-location]').forEach(b => b.classList.remove('active'));
+			if (!isActive) btn.classList.add('active');
+
+			applyFilters();
+		});
+	});
+
+	// ── Clear all ─────────────────────────────────────────────────────────────
+	clearBtn.addEventListener('click', () => {
+		activeDay      = null;
+		activeLocation = null;
+		document.querySelectorAll('.pill').forEach(b => b.classList.remove('active'));
+		applyFilters();
+	});
+</script>
+
 <style>
-	.hero {
-		width: 100%;
-		min-height: 320px;
-		background: linear-gradient(160deg, #a8d88a 0%, #78BA53 50%, #4a7c32 100%);
-		display: flex;
-		align-items: flex-end;
-		padding: 40px 32px;
-	}
-
-	.hero h1 {
-		font-family: 'Gasoek One', sans-serif;
-		font-size: clamp(2.5rem, 8vw, 5rem);
-		font-weight: 400;
-		line-height: 1;
-		margin: 0;
-		color: transparent;
-		-webkit-text-stroke: 3px white;
-		letter-spacing: -0.01em;
-	}
-
-	.intro {
-		background: var(--cream);
-		padding: 52px 32px 40px;
-		text-align: center;
-	}
-
-	.intro h2 {
-		font-family: 'Agrandir', sans-serif;
-		font-weight: 900;
-		font-size: 2rem;
-		color: var(--purple);
-		margin: 0 0 16px;
-		letter-spacing: 0.02em;
-	}
-
-	.intro p {
-		font-family: 'Agrandir', sans-serif;
-		font-weight: 400;
-		font-size: 1rem;
-		line-height: 1.6;
-		color: var(--text);
-		max-width: 580px;
-		margin: 0 auto;
-	}
-
 	.calendar-section {
 		background: var(--blue);
 		padding: 40px 32px 60px;
-	}
-
-	.filter-bar {
-		max-width: 960px;
-		margin: 0 auto 36px;
-		display: flex;
-		align-items: flex-start;
-		gap: 40px;
-		flex-wrap: wrap;
-	}
-
-	.filter-label,
-	.day-label {
-		font-family: 'Agrandir', sans-serif;
-		font-weight: 900;
-		font-size: 1.1rem;
-		color: var(--purple);
-		display: block;
-		margin-bottom: 10px;
-	}
-
-	.filters {
-		display: flex;
-		flex-direction: column;
-		gap: 8px;
-	}
-
-	.filter-pill {
-		padding: 8px 20px;
-		border-radius: 999px;
-		border: 2px solid var(--text);
-		background: transparent;
-		font-family: 'Agrandir', sans-serif;
-		font-weight: 700;
-		font-size: 0.85rem;
-		color: var(--text);
-		cursor: pointer;
-		transition: background 0.15s, color 0.15s;
-		text-align: left;
-	}
-
-	.filter-pill.active-filter,
-	.filter-pill:hover {
-		background: var(--text);
-		color: white;
-	}
-
-	.day-group { flex: 1; }
-
-	.days {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 8px;
-	}
-
-	.day-pill {
-		padding: 8px 18px;
-		border-radius: 999px;
-		border: 2px solid var(--green);
-		background: transparent;
-		font-family: 'Agrandir', sans-serif;
-		font-weight: 700;
-		font-size: 0.85rem;
-		color: var(--green);
-		cursor: pointer;
-		transition: background 0.15s, color 0.15s;
-	}
-
-	.day-pill:hover,
-	.day-active {
-		background: var(--green);
-		color: white;
-	}
-
-	.cards-grid {
-		max-width: 960px;
-		margin: 0 auto;
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 20px;
-	}
-
-	@media (max-width: 768px) {
-		.cards-grid { grid-template-columns: repeat(2, 1fr); }
-		.filter-bar { flex-direction: column; gap: 24px; }
-	}
-
-	@media (max-width: 480px) {
-		.cards-grid { grid-template-columns: 1fr; }
 	}
 </style>
