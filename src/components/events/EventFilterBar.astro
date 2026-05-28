@@ -1,177 +1,160 @@
 ---
 interface Props {
-  days: string[];
-  locations: string[];
+	days:      string[];
+	locations: string[];
 }
 
 const { days, locations } = Astro.props;
 ---
 
 <div class="filter-bar">
-  <!-- Filter type toggle: Dag / Område -->
-  <div class="filter-group">
-    <span class="label">Filter</span>
-    <div class="filter-toggles">
-      <button class="filter-pill active-filter" data-filter="dag">Dag</button>
-      <button class="filter-pill" data-filter="omrade">Område</button>
-    </div>
-  </div>
 
-  <!-- Day pills (visible by default) -->
-  <div class="pill-group" id="dag-group">
-    <span class="label">Kalender</span>
-    <div class="pills">
-      {
-        days.map((day) => (
-          <button class="pill" data-day={day}>
-            {day}
-          </button>
-        ))
-      }
-    </div>
-  </div>
+	<!-- Filter type toggle: Dag / Område -->
+	<div class="filter-group">
+		<span class="label">Filter</span>
+		<div class="filter-toggles">
+			<button class="filter-pill active-filter" data-filter="dag">Dag</button>
+			<button class="filter-pill" data-filter="omrade">Område</button>
+		</div>
+	</div>
 
-  <!-- Location pills (hidden by default) -->
-  <div class="pill-group hidden" id="omrade-group">
-    <span class="label">Vælg by</span>
-    <div class="pills">
-      {
-        locations.map((loc) => (
-          <button class="pill location-pill" data-location={loc}>
-            {loc}
-          </button>
-        ))
-      }
-    </div>
-  </div>
+	<!-- Day pills (visible by default) -->
+	<div class="pill-group" id="dag-group">
+		<span class="label">Kalender</span>
+		<div class="pills">
+			{days.map((day) => (
+				<button class="pill" data-day={day}>{day}</button>
+			))}
+		</div>
+	</div>
+
+	<!-- Location pills (hidden by default) -->
+	<div class="pill-group hidden" id="omrade-group">
+		<span class="label">Vælg by</span>
+		<div class="pills">
+			{locations.map((loc) => (
+				<button class="pill location-pill" data-location={loc}>{loc}</button>
+			))}
+		</div>
+	</div>
+
 </div>
 
 <!-- Active filter indicator -->
 <div id="active-filters" class="active-filters" style="display:none;">
-  <span id="filter-text"></span>
-  <button id="clear-filters">✕ Nulstil</button>
+	<span id="filter-text"></span>
+	<button id="clear-filters">✕ Nulstil</button>
 </div>
 
 <style>
-  .filter-bar {
-    max-width: 960px;
-    margin: 0 auto 36px;
-    display: flex;
-    align-items: flex-start;
-    gap: 40px;
-    flex-wrap: wrap;
-  }
+	.filter-bar {
+		max-width: 960px;
+		margin: 0 auto 36px;
+		display: flex;
+		align-items: flex-start;
+		gap: 40px;
+		flex-wrap: wrap;
+	}
 
-  .label {
-    font-family: "Agrandir", sans-serif;
-    font-weight: 900;
-    font-size: 1.1rem;
-    color: var(--purple);
-    display: block;
-    margin-bottom: 10px;
-  }
+	.label {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 900;
+		font-size: 1.1rem;
+		color: var(--purple);
+		display: block;
+		margin-bottom: 10px;
+	}
 
-  /* ── Filter type toggle ── */
-  .filter-toggles {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+	/* ── Filter type toggle ── */
+	.filter-toggles {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
 
-  .filter-pill {
-    padding: 8px 20px;
-    border-radius: 999px;
-    border: 2px solid var(--text);
-    background: transparent;
-    font-family: "Agrandir", sans-serif;
-    font-weight: 700;
-    font-size: 0.85rem;
-    color: var(--text);
-    cursor: pointer;
-    transition:
-      background 0.15s,
-      color 0.15s;
-    text-align: left;
-  }
+	.filter-pill {
+		padding: 8px 20px;
+		border-radius: 999px;
+		border: 2px solid var(--text);
+		background: transparent;
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 700;
+		font-size: 0.85rem;
+		color: var(--text);
+		cursor: pointer;
+		transition: background 0.15s, color 0.15s;
+		text-align: left;
+	}
 
-  .filter-pill.active-filter,
-  .filter-pill:hover {
-    background: var(--text);
-    color: white;
-  }
+	.filter-pill.active-filter,
+	.filter-pill:hover {
+		background: var(--text);
+		color: white;
+	}
 
-  /* ── Day / location pill groups ── */
-  .pill-group {
-    flex: 1;
-  }
+	/* ── Day / location pill groups ── */
+	.pill-group {
+		flex: 1;
+	}
 
-  .pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
+	.pills {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
 
-  .pill {
-    padding: 8px 18px;
-    border-radius: 999px;
-    border: 2px solid var(--green);
-    background: transparent;
-    font-family: "Agrandir", sans-serif;
-    font-weight: 700;
-    font-size: 0.85rem;
-    color: var(--green);
-    cursor: pointer;
-    transition:
-      background 0.15s,
-      color 0.15s;
-  }
+	.pill {
+		padding: 8px 18px;
+		border-radius: 999px;
+		border: 2px solid var(--green);
+		background: transparent;
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 700;
+		font-size: 0.85rem;
+		color: var(--green);
+		cursor: pointer;
+		transition: background 0.15s, color 0.15s;
+	}
 
-  .pill:hover,
-  .pill.active {
-    background: var(--green);
-    color: white;
-  }
+	.pill:hover,
+	.pill.active {
+		background: var(--green);
+		color: white;
+	}
 
-  /* ── Active filter bar ── */
-  .active-filters {
-    max-width: 960px;
-    margin: -16px auto 24px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    font-family: "Agrandir", sans-serif;
-    font-size: 0.9rem;
-    color: var(--text);
-    font-weight: 700;
-  }
+	/* ── Active filter bar ── */
+	.active-filters {
+		max-width: 960px;
+		margin: -16px auto 24px;
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		font-family: 'Agrandir', sans-serif;
+		font-size: 0.9rem;
+		color: var(--text);
+		font-weight: 700;
+	}
 
-  #clear-filters {
-    padding: 4px 14px;
-    border-radius: 999px;
-    border: 2px solid var(--text);
-    background: transparent;
-    font-family: "Agrandir", sans-serif;
-    font-weight: 700;
-    font-size: 0.8rem;
-    cursor: pointer;
-    transition:
-      background 0.15s,
-      color 0.15s;
-  }
+	#clear-filters {
+		padding: 4px 14px;
+		border-radius: 999px;
+		border: 2px solid var(--text);
+		background: transparent;
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 700;
+		font-size: 0.8rem;
+		cursor: pointer;
+		transition: background 0.15s, color 0.15s;
+	}
 
-  #clear-filters:hover {
-    background: var(--text);
-    color: white;
-  }
+	#clear-filters:hover {
+		background: var(--text);
+		color: white;
+	}
 
-  .hidden {
-    display: none !important;
-  }
+	.hidden { display: none !important; }
 
-  @media (max-width: 768px) {
-    .filter-bar {
-      flex-direction: column;
-      gap: 24px;
-    }
-  }
+	@media (max-width: 768px) {
+		.filter-bar { flex-direction: column; gap: 24px; }
+	}
 </style>

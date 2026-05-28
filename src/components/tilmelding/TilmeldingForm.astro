@@ -1,170 +1,172 @@
 ---
-
 ---
 
 <section class="signup-section">
-  <div class="signup-inner">
-    <h2>DELTAG I EVENT</h2>
+	<div class="signup-inner">
 
-    <p class="signup-lead">Har du lyst til at være en del af et fællesskab, der løfter unge og står sammen om bedre trivsel? Tilmeld dig til en af vores kommende events gennem formularen og bliv en del af Headspace-fællesskabet.</p>
+		<h2>DELTAG I EVENT</h2>
 
-    <p class="signup-sub">Sammen skaber vi rum, hvor unge kan blive hørt, støttet og mødt — af hinanden.</p>
+		<p class="signup-lead">
+			Har du lyst til at være en del af et fællesskab, der løfter unge og står sammen om
+			bedre trivsel? Tilmeld dig til en af vores kommende events gennem formularen og
+			bliv en del af Headspace-fællesskabet.
+		</p>
 
-    <form class="form-card" id="signup-form">
-      <div class="form-row">
-        <label for="navn">Navn</label>
-        <input type="text" id="navn" name="navn" required />
-      </div>
-      <div class="form-row">
-        <label for="telefon">Telefon nummer</label>
-        <input type="tel" id="telefon" name="telefon" required />
-      </div>
-      <div class="form-row">
-        <label for="email">Gmail</label>
-        <input type="email" id="email" name="email" required />
-      </div>
-      <button type="submit">Deltag i event &gt;</button>
-    </form>
+		<p class="signup-sub">
+			Sammen skaber vi rum, hvor unge kan blive hørt, støttet og mødt — af hinanden.
+		</p>
 
-    <div id="success-msg" class="success-msg" style="display:none;">
-      <p>🎉 Tak for din tilmelding! Vi glæder os til at se dig.</p>
-    </div>
-  </div>
+		<form class="form-card" id="signup-form">
+			<div class="form-row">
+				<label for="navn">Navn</label>
+				<input type="text" id="navn" name="navn" required />
+			</div>
+			<div class="form-row">
+				<label for="telefon">Telefon nummer</label>
+				<input type="tel" id="telefon" name="telefon" required />
+			</div>
+			<div class="form-row">
+				<label for="email">Gmail</label>
+				<input type="email" id="email" name="email" required />
+			</div>
+			<button type="submit">Deltag i event &gt;</button>
+		</form>
+
+		<div id="success-msg" class="success-msg" style="display:none;">
+			<p>🎉 Tak for din tilmelding! Vi glæder os til at se dig.</p>
+		</div>
+
+	</div>
 </section>
 
 <script>
-  // Self-contained: hides the form and shows success when submitted
-  document.getElementById("signup-form")!.addEventListener("submit", (e) => {
-    e.preventDefault();
-    (document.getElementById("signup-form")! as HTMLElement).style.display = "none";
-    (document.getElementById("success-msg")! as HTMLElement).style.display = "";
-  });
+	// Self-contained: hides the form and shows success when submitted
+	document.getElementById('signup-form')!.addEventListener('submit', (e) => {
+		e.preventDefault();
+		(document.getElementById('signup-form')! as HTMLElement).style.display = 'none';
+		(document.getElementById('success-msg')! as HTMLElement).style.display = '';
+	});
 </script>
 
 <style>
-  .signup-section {
-    background: var(--cream);
-    padding: 60px 32px;
-  }
+	.signup-section {
+		background: var(--cream);
+		padding: 60px 32px;
+	}
 
-  .signup-inner {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
-  }
+	.signup-inner {
+		max-width: 600px;
+		margin: 0 auto;
+		text-align: center;
+	}
 
-  h2 {
-    font-family: "Agrandir", sans-serif;
-    font-weight: 900;
-    font-size: 2rem;
-    color: var(--green);
-    margin: 0 0 20px;
-    letter-spacing: 0.02em;
-  }
+	h2 {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 900;
+		font-size: 2rem;
+		color: var(--green);
+		margin: 0 0 20px;
+		letter-spacing: 0.02em;
+	}
 
-  .signup-lead {
-    font-family: "Agrandir", sans-serif;
-    font-weight: 400;
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: var(--text);
-    margin: 0 0 12px;
-  }
+	.signup-lead {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 400;
+		font-size: 0.95rem;
+		line-height: 1.7;
+		color: var(--text);
+		margin: 0 0 12px;
+	}
 
-  .signup-sub {
-    font-family: "Agrandir", sans-serif;
-    font-weight: 400;
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: var(--text);
-    margin: 0 0 36px;
-  }
+	.signup-sub {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 400;
+		font-size: 0.9rem;
+		line-height: 1.6;
+		color: var(--text);
+		margin: 0 0 36px;
+	}
 
-  /* ── Form card ── */
-  .form-card {
-    background: white;
-    border: 2px solid var(--text);
-    border-radius: 16px;
-    padding: 32px 36px;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
+	/* ── Form card ── */
+	.form-card {
+		background: white;
+		border: 2px solid var(--text);
+		border-radius: 16px;
+		padding: 32px 36px;
+		text-align: left;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
 
-  .form-row {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
+	.form-row {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+	}
 
-  .form-row label {
-    font-family: "Agrandir", sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: var(--text);
-    min-width: 110px;
-    flex-shrink: 0;
-  }
+	.form-row label {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 700;
+		font-size: 0.9rem;
+		color: var(--text);
+		min-width: 110px;
+		flex-shrink: 0;
+	}
 
-  .form-row input {
-    flex: 1;
-    border: 1.5px solid #ccc;
-    border-radius: 6px;
-    padding: 8px 12px;
-    font-family: "Agrandir", sans-serif;
-    font-size: 0.9rem;
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.15s;
-  }
+	.form-row input {
+		flex: 1;
+		border: 1.5px solid #ccc;
+		border-radius: 6px;
+		padding: 8px 12px;
+		font-family: 'Agrandir', sans-serif;
+		font-size: 0.9rem;
+		color: var(--text);
+		outline: none;
+		transition: border-color 0.15s;
+	}
 
-  .form-row input:focus {
-    border-color: var(--purple);
-  }
+	.form-row input:focus {
+		border-color: var(--purple);
+	}
 
-  button[type="submit"] {
-    align-self: center;
-    margin-top: 8px;
-    padding: 12px 32px;
-    border-radius: 999px;
-    border: none;
-    background: var(--purple);
-    color: white;
-    font-family: "Agrandir", sans-serif;
-    font-weight: 700;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
+	button[type="submit"] {
+		align-self: center;
+		margin-top: 8px;
+		padding: 12px 32px;
+		border-radius: 999px;
+		border: none;
+		background: var(--purple);
+		color: white;
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 700;
+		font-size: 0.95rem;
+		cursor: pointer;
+		transition: opacity 0.2s;
+	}
 
-  button[type="submit"]:hover {
-    opacity: 0.85;
-  }
+	button[type="submit"]:hover { opacity: 0.85; }
 
-  /* ── Success message ── */
-  .success-msg {
-    margin-top: 32px;
-    padding: 24px;
-    background: #eafbe4;
-    border-radius: 12px;
-    font-family: "Agrandir", sans-serif;
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--green);
-  }
+	/* ── Success message ── */
+	.success-msg {
+		margin-top: 32px;
+		padding: 24px;
+		background: #eafbe4;
+		border-radius: 12px;
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 700;
+		font-size: 1.1rem;
+		color: var(--green);
+	}
 
-  /* ── Responsive ── */
-  @media (max-width: 680px) {
-    .form-row {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 6px;
-    }
+	/* ── Responsive ── */
+	@media (max-width: 680px) {
+		.form-row {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 6px;
+		}
 
-    .form-row input {
-      width: 100%;
-      box-sizing: border-box;
-    }
-  }
+		.form-row input { width: 100%; box-sizing: border-box; }
+	}
 </style>

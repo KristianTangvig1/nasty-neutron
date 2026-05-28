@@ -1,63 +1,67 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { supabase } from "../lib/supabase";
-import type { Campaign, EventItem } from "../lib/types";
+import Layout          from '../layouts/Layout.astro';
+import { supabase }    from '../lib/supabase';
+import type { Campaign, EventItem } from '../lib/types';
 
-import EventsHero from "../components/events/EventsHero.astro";
-import EventsIntro from "../components/events/EventsIntro.astro";
-import EventsCalendar from "../components/events/EventsCalendar.astro";
+import EventsHero      from '../components/events/EventsHero.astro';
+import EventsIntro     from '../components/events/EventsIntro.astro';
+import EventsCalendar  from '../components/events/EventsCalendar.astro';
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
 const titleToCampaign: Record<string, Campaign> = {
-  Gåtur: "det-okay",
-  "Løb med Headspace": "diy",
-  "Foredrag med influencer": "diy",
-  Brætspilscafe: "brave-together",
-  "Koncert med musiker": "brave-together",
-  "Headspace LAN event": "diy",
-  "Intimkoncert med musiker": "brave-together",
+	'Gåtur':                    'det-okay',
+	'Løb med Headspace':        'diy',
+	'Foredrag med influencer':  'diy',
+	'Brætspilscafe':            'brave-together',
+	'Koncert med musiker':      'brave-together',
+	'Headspace LAN event':      'diy',
+	'Intimkoncert med musiker': 'brave-together',
 };
 
 function getDanishDay(dateStr: string): string {
-  const [year, month, day] = dateStr.split("-").map(Number);
-  const name = new Date(year, month - 1, day).toLocaleDateString("da-DK", { weekday: "long" });
-  return name.charAt(0).toUpperCase() + name.slice(1);
+	const [year, month, day] = dateStr.split('-').map(Number);
+	const name = new Date(year, month - 1, day).toLocaleDateString('da-DK', { weekday: 'long' });
+	return name.charAt(0).toUpperCase() + name.slice(1);
 }
 
 function formatTime(timeStr: string): string {
-  return "kl. " + timeStr.slice(0, 5).replace(":", ".");
+	return 'kl. ' + timeStr.slice(0, 5).replace(':', '.');
 }
 
 // ── Data fetching ─────────────────────────────────────────────────────────────
 
-const { data: rows, error } = await supabase.from("headspace").select("*").order("dato", { ascending: true }).order("tid", { ascending: true });
+const { data: rows, error } = await supabase
+	.from('headspace')
+	.select('*')
+	.order('dato', { ascending: true })
+	.order('tid',  { ascending: true });
 
-if (error) console.error("Supabase fejl:", error.message);
+if (error) console.error('Supabase fejl:', error.message);
 
 // ── Transform rows → EventItem[] ─────────────────────────────────────────────
 
-const events: EventItem[] = (rows ?? []).map((row) => ({
-  id: row.id as number,
-  title: row.titel as string,
-  beskrivelse: row.beskrivelse as string,
-  day: getDanishDay(row.dato as string),
-  time: `${getDanishDay(row.dato as string)} ${formatTime(row.tid as string)}`,
-  location: row.sted as string,
-  campaign: (titleToCampaign[row.titel as string] ?? "det-okay") as Campaign,
+const events: EventItem[] = (rows ?? []).map(row => ({
+	id:          row.id          as number,
+	title:       row.titel       as string,
+	beskrivelse: row.beskrivelse as string,
+	day:         getDanishDay(row.dato as string),
+	time:        `${getDanishDay(row.dato as string)} ${formatTime(row.tid as string)}`,
+	location:    row.sted        as string,
+	campaign:    (titleToCampaign[row.titel as string] ?? 'det-okay') as Campaign,
 }));
 
 // ── Derive filter options ─────────────────────────────────────────────────────
 
-const allDays = ["Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag", "Søndag"];
-const eventDays = new Set(events.map((e) => e.day));
-const days = allDays.filter((d) => eventDays.has(d));
+const allDays   = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag', 'Søndag'];
+const eventDays = new Set(events.map(e => e.day));
+const days      = allDays.filter(d => eventDays.has(d));
 
-const locations = [...new Set(events.map((e) => e.location))].sort();
+const locations = [...new Set(events.map(e => e.location))].sort();
 ---
 
 <Layout title="Events — headspace Danmark">
-  <EventsHero />
-  <EventsIntro />
-  <EventsCalendar events={events} days={days} locations={locations} />
+	<EventsHero />
+	<EventsIntro />
+	<EventsCalendar events={events} days={days} locations={locations} />
 </Layout>

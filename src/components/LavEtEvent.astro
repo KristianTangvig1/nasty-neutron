@@ -1,178 +1,186 @@
 ---
-
 ---
 
 <section class="lav-event_index">
-  <div class="lav-event_inner">
-    <div class="lav-event_index_text">
-      <h1>HAR DU IDEER TIL ET NYT HEADSPACE EVENT?</h1>
-      <p>Vi arbejder hele tiden på at finde nye måder at engagere flere mennesker i at støtte unges trivsel.</p>
-      <p>Har du en idé til et fremtidigt Headspace-event? Udfyld formularen og send den afsted til os — sammen skaber vi fællesskaber, hvor unge bliver set, hørt og støttet.</p>
-    </div>
+	<div class="lav-event_inner">
 
-    <div class="lav-event_form-wrap">
-      <div class="lav-event_form">
-        <form>
-          <fieldset>
-            <legend>Personlige Oplysninger</legend>
+		<div class="lav-event_index_text">
+			<h1>HAR DU IDEER TIL ET NYT HEADSPACE EVENT?</h1>
+			<p>
+				Vi arbejder hele tiden på at finde nye måder at engagere flere mennesker
+				i at støtte unges trivsel.
+			</p>
+			<p>
+				Har du en idé til et fremtidigt Headspace-event? Udfyld formularen og send
+				den afsted til os — sammen skaber vi fællesskaber, hvor unge bliver set,
+				hørt og støttet.
+			</p>
+		</div>
 
-            <label for="name">Navn</label>
-            <input type="text" id="name" name="name" />
+		<div class="lav-event_form-wrap">
+			<div class="lav-event_form">
+				<form>
+					<fieldset>
+						<legend>Personlige Oplysninger</legend>
 
-            <label for="phone">Telefon nummer</label>
-            <input type="tel" id="phone" name="phone" />
+						<label for="name">Navn</label>
+						<input type="text" id="name" name="name">
 
-            <label for="email">Gmail</label>
-            <input type="email" id="email" name="email" />
-          </fieldset>
+						<label for="phone">Telefon nummer</label>
+						<input type="tel" id="phone" name="phone">
 
-          <fieldset>
-            <legend>Dine Ideer</legend>
+						<label for="email">Gmail</label>
+						<input type="email" id="email" name="email">
+					</fieldset>
 
-            <label for="about">Skriv om dine ideer til et event! Giv gerne ideer til tid, sted, og indhold.</label>
-            <textarea id="about" name="about"></textarea>
-          </fieldset>
+					<fieldset>
+						<legend>Dine Ideer</legend>
 
-          <button type="submit">send dit event!</button>
-        </form>
-      </div>
-    </div>
-  </div>
+						<label for="about">Skriv om dine ideer til et event! Giv gerne ideer til tid, sted, og indhold.</label>
+						<textarea id="about" name="about"></textarea>
+					</fieldset>
+
+					<button type="submit">send dit event!</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
 </section>
 
 <style>
-  /* ── Section shell ── */
-  .lav-event_index {
-    width: 100%;
-    background-color: #d8cde6;
-    padding: 80px 32px;
-  }
+	/* ── Section shell ── */
+	.lav-event_index {
+		width: 100%;
+		background-color: #D8CDE6;
+		padding: 80px 32px;
+	}
 
-  /* ── Inner container — mirrors SoMe's .container ── */
-  .lav-event_inner {
-    max-width: 900px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    align-items: center;
-  }
+	/* ── Inner container — mirrors SoMe's .container ── */
+	.lav-event_inner {
+		max-width: 900px;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 48px;
+		align-items: center;
+	}
 
-  /* ── Left: text ── */
-  .lav-event_index_text h1 {
-    font-family: "Agrandir", sans-serif;
-    font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 900;
-    color: #7db742;
-    margin: 0 0 20px;
-    line-height: 1.1;
-  }
+	/* ── Left: text ── */
+	.lav-event_index_text h1 {
+		font-family: 'Agrandir', sans-serif;
+		font-size: clamp(1.8rem, 4vw, 2.8rem);
+		font-weight: 900;
+		color: #7DB742;
+		margin: 0 0 20px;
+		line-height: 1.1;
+	}
 
-  .lav-event_index_text p {
-    font-family: "Agrandir", sans-serif;
-    font-weight: 400;
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #1a1a1a;
-    margin: 0 0 16px;
-  }
+	.lav-event_index_text p {
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 400;
+		font-size: 1rem;
+		line-height: 1.7;
+		color: #1A1A1A;
+		margin: 0 0 16px;
+	}
 
-  /* ── Right: form wrap — mirrors SoMe's .video-card ── */
-  .lav-event_form-wrap {
-    max-width: 75%;
-    margin: 0 auto;
-  }
+	/* ── Right: form wrap — mirrors SoMe's .video-card ── */
+	.lav-event_form-wrap {
+		max-width: 75%;
+		margin: 0 auto;
+	}
 
-  /* ── Form card ── */
-  .lav-event_form {
-    background: #ffffff;
-    border: 4px solid #5e357c;
-    border-radius: 20px;
-    padding: 20px 24px;
-    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-    width: 100%;
-  }
+	/* ── Form card ── */
+	.lav-event_form {
+		background: #FFFFFF;
+		border: 4px solid #5E357C;
+		border-radius: 20px;
+		padding: 20px 24px;
+		box-shadow: 0 6px 28px rgba(0,0,0,0.10);
+		box-sizing: border-box;
+		width: 100%;
+	}
 
-  /* Fieldset */
-  .lav-event_form fieldset {
-    border: none;
-    padding: 0;
-    margin-bottom: 12px;
-  }
+	/* Fieldset */
+	.lav-event_form fieldset {
+		border: none;
+		padding: 0;
+		margin-bottom: 12px;
+	}
 
-  .lav-event_form legend {
-    font-family: "Agrandir", sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: #5e357c;
-  }
+	.lav-event_form legend {
+		font-family: 'Agrandir', sans-serif;
+		font-size: 0.95rem;
+		font-weight: 700;
+		margin-bottom: 8px;
+		color: #5E357C;
+	}
 
-  /* Labels */
-  .lav-event_form label {
-    display: block;
-    font-family: "Agrandir", sans-serif;
-    font-size: 0.8rem;
-    font-weight: 700;
-    margin-bottom: 3px;
-    color: #1a1a1a;
-  }
+	/* Labels */
+	.lav-event_form label {
+		display: block;
+		font-family: 'Agrandir', sans-serif;
+		font-size: 0.8rem;
+		font-weight: 700;
+		margin-bottom: 3px;
+		color: #1A1A1A;
+	}
 
-  /* Inputs + textarea */
-  .lav-event_form input,
-  .lav-event_form textarea {
-    width: 100%;
-    padding: 7px 12px;
-    border: 1.5px solid #000000;
-    border-radius: 8px;
-    font-family: "Agrandir", sans-serif;
-    font-size: 0.85rem;
-    margin-bottom: 8px;
-    background: #ffffff;
-    box-sizing: border-box;
-    outline: none;
-    transition: border-color 0.15s;
-  }
+	/* Inputs + textarea */
+	.lav-event_form input,
+	.lav-event_form textarea {
+		width: 100%;
+		padding: 7px 12px;
+		border: 1.5px solid #000000;
+		border-radius: 8px;
+		font-family: 'Agrandir', sans-serif;
+		font-size: 0.85rem;
+		margin-bottom: 8px;
+		background: #FFFFFF;
+		box-sizing: border-box;
+		outline: none;
+		transition: border-color 0.15s;
+	}
 
-  .lav-event_form input:focus,
-  .lav-event_form textarea:focus {
-    border-color: #5e357c;
-  }
+	.lav-event_form input:focus,
+	.lav-event_form textarea:focus {
+		border-color: #5E357C;
+	}
 
-  .lav-event_form textarea {
-    height: 70px;
-    resize: none;
-  }
+	.lav-event_form textarea {
+		height: 70px;
+		resize: none;
+	}
 
-  /* Submit button */
-  .lav-event_form button {
-    width: 100%;
-    background: #cbbddd;
-    color: #5e357c;
-    padding: 10px 0;
-    border: none;
-    border-radius: 999px;
-    font-family: "Agrandir", sans-serif;
-    font-weight: 700;
-    font-size: 0.9rem;
-    cursor: pointer;
-    margin-top: 4px;
-    transition: opacity 0.2s;
-  }
+	/* Submit button */
+	.lav-event_form button {
+		width: 100%;
+		background: #CBBDDD;
+		color: #5E357C;
+		padding: 10px 0;
+		border: none;
+		border-radius: 999px;
+		font-family: 'Agrandir', sans-serif;
+		font-weight: 700;
+		font-size: 0.9rem;
+		cursor: pointer;
+		margin-top: 4px;
+		transition: opacity 0.2s;
+	}
 
-  .lav-event_form button:hover {
-    opacity: 0.85;
-  }
+	.lav-event_form button:hover {
+		opacity: 0.85;
+	}
 
-  /* ── Responsive ── */
-  @media (max-width: 640px) {
-    .lav-event_inner {
-      grid-template-columns: 1fr;
-    }
+	/* ── Responsive ── */
+	@media (max-width: 640px) {
+		.lav-event_inner {
+			grid-template-columns: 1fr;
+		}
 
-    .lav-event_form-wrap {
-      max-width: 100%;
-    }
-  }
+		.lav-event_form-wrap {
+			max-width: 100%;
+		}
+	}
 </style>

@@ -1,147 +1,151 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import TilmeldingHero from "../components/tilmelding/TilmeldingHero.astro";
-import TilmeldingEvent from "../components/tilmelding/TilmeldingEvent.astro";
-import TilmeldingForm from "../components/tilmelding/TilmeldingForm.astro";
+import Layout           from '../layouts/Layout.astro';
+import TilmeldingHero   from '../components/tilmelding/TilmeldingHero.astro';
+import TilmeldingEvent  from '../components/tilmelding/TilmeldingEvent.astro';
+import TilmeldingForm   from '../components/tilmelding/TilmeldingForm.astro';
 ---
 
 <Layout title="Tilmelding — headspace Danmark">
-  <!-- Loading state -->
-  <div id="loading-state" class="loading-state">
-    <p>Indlæser event…</p>
-  </div>
 
-  <!-- Error state (shown if ?id is missing or not found) -->
-  <div id="error-state" class="error-state" style="display:none;">
-    <h2>Event ikke fundet</h2>
-    <p>Gå tilbage til <a href="/events">alle events</a>.</p>
-  </div>
+	<!-- Loading state -->
+	<div id="loading-state" class="loading-state">
+		<p>Indlæser event…</p>
+	</div>
 
-  <!-- Page content (hidden until JS populates it) -->
-  <div id="page-content" style="display:none;">
-    <TilmeldingHero />
-    <TilmeldingEvent />
-    <TilmeldingForm />
-  </div>
+	<!-- Error state (shown if ?id is missing or not found) -->
+	<div id="error-state" class="error-state" style="display:none;">
+		<h2>Event ikke fundet</h2>
+		<p>Gå tilbage til <a href="/events">alle events</a>.</p>
+	</div>
+
+	<!-- Page content (hidden until JS populates it) -->
+	<div id="page-content" style="display:none;">
+		<TilmeldingHero />
+		<TilmeldingEvent />
+		<TilmeldingForm />
+	</div>
+
 </Layout>
 
 <!-- Supabase client + page population logic -->
 <script>
-  import { createClient } from "@supabase/supabase-js";
+	import { createClient } from '@supabase/supabase-js';
 
-  const supabase = createClient(import.meta.env.PUBLIC_SUPABASE_URL, import.meta.env.PUBLIC_SUPABASE_KEY);
+	const supabase = createClient(
+		import.meta.env.PUBLIC_SUPABASE_URL,
+		import.meta.env.PUBLIC_SUPABASE_KEY,
+	);
 
-  // Campaign helpers
+	// Campaign helpers
 
-  const titleToCampaign: Record<string, string> = {
-    Gåtur: "det-okay",
-    "Løb med Headspace": "diy",
-    "Foredrag med influencer": "diy",
-    Brætspilscafe: "brave-together",
-    "Koncert med musiker": "brave-together",
-    "Headspace LAN event": "diy",
-    "Intimkoncert med musiker": "brave-together",
-  };
+	const titleToCampaign: Record<string, string> = {
+		'Gåtur':                    'det-okay',
+		'Løb med Headspace':        'diy',
+		'Foredrag med influencer':  'diy',
+		'Brætspilscafe':            'brave-together',
+		'Koncert med musiker':      'brave-together',
+		'Headspace LAN event':      'diy',
+		'Intimkoncert med musiker': 'brave-together',
+	};
 
-  const campaignDisplayName: Record<string, string> = {
-    "det-okay": "DET OKAY",
-    diy: "DIY",
-    "brave-together": "BRAVE TOGETHER",
-  };
+	const campaignDisplayName: Record<string, string> = {
+		'det-okay':       'DET OKAY',
+		'diy':            'DIY',
+		'brave-together': 'BRAVE TOGETHER',
+	};
 
-  // Date helpers
+	// Date helpers
 
-  function formatDanishDate(dateStr: string): string {
-    const [year, month, day] = dateStr.split("-").map(Number);
-    const date = new Date(year, month - 1, day);
-    const dayName = date.toLocaleDateString("da-DK", { weekday: "long" });
-    return `${dayName.charAt(0).toUpperCase() + dayName.slice(1)} den ${day}.${month}.${year}`;
-  }
+	function formatDanishDate(dateStr: string): string {
+		const [year, month, day] = dateStr.split('-').map(Number);
+		const date    = new Date(year, month - 1, day);
+		const dayName = date.toLocaleDateString('da-DK', { weekday: 'long' });
+		return `${dayName.charAt(0).toUpperCase() + dayName.slice(1)} den ${day}.${month}.${year}`;
+	}
 
-  function formatTime(timeStr: string): string {
-    return "kl. " + timeStr.slice(0, 5).replace(":", ".");
-  }
+	function formatTime(timeStr: string): string {
+		return 'kl. ' + timeStr.slice(0, 5).replace(':', '.');
+	}
 
-  // DOM helpers
+	// DOM helpers
 
-  const show = (id: string) => {
-    document.getElementById(id)!.style.display = "";
-  };
-  const hide = (id: string) => {
-    document.getElementById(id)!.style.display = "none";
-  };
-  const setText = (id: string, value: string) => {
-    document.getElementById(id)!.textContent = value;
-  };
+	const show = (id: string) => { (document.getElementById(id)!).style.display = ''; };
+	const hide = (id: string) => { (document.getElementById(id)!).style.display = 'none'; };
+	const setText = (id: string, value: string) => { document.getElementById(id)!.textContent = value; };
 
-  function renderDescription(raw: string) {
-    const el = document.getElementById("event-description")!;
-    el.innerHTML = raw
-      .split("\n")
-      .filter((line) => line.trim())
-      .map((line) => `<p>${line}</p>`)
-      .join("");
-  }
+	function renderDescription(raw: string) {
+		const el = document.getElementById('event-description')!;
+		el.innerHTML = raw
+			.split('\n')
+			.filter(line => line.trim())
+			.map(line => `<p>${line}</p>`)
+			.join('');
+	}
 
-  // Fetch event from URL param
+	// Fetch event from URL param
 
-  const params = new URLSearchParams(window.location.search);
-  const eventId = params.get("id");
+	const params  = new URLSearchParams(window.location.search);
+	const eventId = params.get('id');
 
-  if (!eventId) {
-    hide("loading-state");
-    show("error-state");
-  } else {
-    const { data, error } = await supabase.from("headspace").select("*").eq("id", eventId).single();
+	if (!eventId) {
+		hide('loading-state');
+		show('error-state');
+	} else {
+		const { data, error } = await supabase
+			.from('headspace')
+			.select('*')
+			.eq('id', eventId)
+			.single();
 
-    hide("loading-state");
+		hide('loading-state');
 
-    if (error || !data) {
-      show("error-state");
-    } else {
-      const campaign = titleToCampaign[data.titel as string] ?? "det-okay";
-      const danishDate = formatDanishDate(data.dato as string);
-      const time = formatTime(data.tid as string);
+		if (error || !data) {
+			show('error-state');
+		} else {
+			const campaign   = titleToCampaign[data.titel as string] ?? 'det-okay';
+			const danishDate = formatDanishDate(data.dato as string);
+			const time       = formatTime(data.tid as string);
 
-      setText("hero-title", data.titel as string);
-      setText("campaign-name", campaignDisplayName[campaign]);
-      setText("event-date", danishDate);
-      setText("event-title", data.titel as string);
-      renderDescription(data.beskrivelse as string);
-      setText("chip-time", `Dag/Tid: ${danishDate} ${time}`);
-      setText("chip-location", `Lokation: ${data.sted as string}`);
+			setText('hero-title',    data.titel as string);
+			setText('campaign-name', campaignDisplayName[campaign]);
+			setText('event-date',    danishDate);
+			setText('event-title',   data.titel as string);
+			renderDescription(data.beskrivelse as string);
+			setText('chip-time',     `Dag/Tid: ${danishDate} ${time}`);
+			setText('chip-location', `Lokation: ${data.sted as string}`);
 
-      document.getElementById("poster-display")!.dataset.campaign = campaign;
-      document.getElementById("event-section")!.dataset.campaign = campaign;
+			document.getElementById('poster-display')!.dataset.campaign = campaign;
+			document.getElementById('event-section')!.dataset.campaign  = campaign;
 
-      show("page-content");
-    }
-  }
+			show('page-content');
+		}
+	}
+
 </script>
 
 <style>
-  /* ── Loading / error states ── */
-  .loading-state,
-  .error-state {
-    min-height: 40vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: "Agrandir", sans-serif;
-    font-size: 1.1rem;
-    color: var(--purple);
-    gap: 12px;
-  }
+	/* ── Loading / error states ── */
+	.loading-state,
+	.error-state {
+		min-height: 40vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		font-family: 'Agrandir', sans-serif;
+		font-size: 1.1rem;
+		color: var(--purple);
+		gap: 12px;
+	}
 
-  .error-state h2 {
-    font-weight: 900;
-    font-size: 1.8rem;
-    margin: 0;
-  }
+	.error-state h2 {
+		font-weight: 900;
+		font-size: 1.8rem;
+		margin: 0;
+	}
 
-  .error-state a {
-    color: var(--green);
-    text-decoration: underline;
-  }
+	.error-state a {
+		color: var(--green);
+		text-decoration: underline;
+	}
 </style>
