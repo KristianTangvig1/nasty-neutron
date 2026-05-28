@@ -32,6 +32,25 @@ const { navItems = defaultNav } = Astro.props;
 	</nav>
 </header>
 
+<script>
+  const hamburger = document.querySelector<HTMLButtonElement>(".hamburger")!;
+  const nav = document.querySelector<HTMLElement>("header nav")!;
+
+  hamburger.addEventListener("click", () => {
+    const isOpen = hamburger.getAttribute("aria-expanded") === "true";
+    hamburger.setAttribute("aria-expanded", String(!isOpen));
+    nav.classList.toggle("open");
+  });
+
+  // Luk menu når man klikker på et link
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      hamburger.setAttribute("aria-expanded", "false");
+      nav.classList.remove("open");
+    });
+  });
+</script>
+
 <style>
 	header {
 		display: flex;
