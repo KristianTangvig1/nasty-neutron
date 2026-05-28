@@ -20,6 +20,13 @@ const { navItems = defaultNav } = Astro.props;
 
 <header>
   <a href="/" class="logo">headspace</a>
+
+  <button class="hamburger" aria-label="Åbn menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
   <nav>
     {
       navItems.map((item: NavItem) => (
@@ -30,6 +37,25 @@ const { navItems = defaultNav } = Astro.props;
     }
   </nav>
 </header>
+
+<script>
+  const hamburger = document.querySelector<HTMLButtonElement>(".hamburger")!;
+  const nav = document.querySelector<HTMLElement>("header nav")!;
+
+  hamburger.addEventListener("click", () => {
+    const isOpen = hamburger.getAttribute("aria-expanded") === "true";
+    hamburger.setAttribute("aria-expanded", String(!isOpen));
+    nav.classList.toggle("open");
+  });
+
+  // Luk menu når man klikker på et link
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      hamburger.setAttribute("aria-expanded", "false");
+      nav.classList.remove("open");
+    });
+  });
+</script>
 
 <style>
   header {
@@ -92,5 +118,82 @@ const { navItems = defaultNav } = Astro.props;
   .pill-blue {
     background: var(--blue);
     color: var(--text);
+  }
+
+  /* ── Hamburger-knap (skjult på desktop) ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+
+  .hamburger span {
+    display: block;
+    height: 2px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  /* X-animation når menuen er åben */
+  .hamburger[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .hamburger[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* ── Mobil ── */
+  @media (max-width: 600px) {
+    header {
+      padding: 14px 20px;
+    }
+
+    .hamburger {
+      display: flex;
+    }
+
+    nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      background: white;
+      padding: 16px 20px 24px;
+      gap: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    nav.open {
+      display: flex;
+    }
+
+    .nav-item {
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .pill-purple,
+    .pill-green,
+    .pill-blue {
+      padding: 14px 24px;
+    }
   }
 </style>
