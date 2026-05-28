@@ -1,88 +1,96 @@
 ---
 interface NavItem {
-	label: string;
-	href: string;
-	variant?: 'text' | 'pill-purple' | 'pill-green' | 'pill-blue';
+  label: string;
+  href: string;
+  variant?: "text" | "pill-purple" | "pill-green" | "pill-blue";
 }
 
 interface Props {
-	navItems?: NavItem[];
+  navItems?: NavItem[];
 }
 
 const defaultNav: NavItem[] = [
-	{ label: 'hjem',   href: '/',       variant: 'pill-green'  },
-	{ label: 'events', href: '/events', variant: 'pill-purple' },
-	{ label: 'om os',  href: '/info',   variant: 'pill-blue'   },
+  { label: "hjem", href: "/", variant: "pill-green" },
+  { label: "events", href: "/events", variant: "pill-purple" },
+  { label: "om os", href: "/info", variant: "pill-blue" },
 ];
 
 const { navItems = defaultNav } = Astro.props;
 ---
 
 <header>
-	<a href="/" class="logo">headspace</a>
-	<nav>
-		{navItems.map((item: NavItem) => (
-			<a
-				href={item.href}
-				class:list={['nav-item', item.variant ?? 'text']}
-			>
-				{item.label}
-			</a>
-		))}
-	</nav>
+  <a href="/" class="logo">headspace</a>
+  <nav>
+    {
+      navItems.map((item: NavItem) => (
+        <a href={item.href} class:list={["nav-item", item.variant ?? "text"]}>
+          {item.label}
+        </a>
+      ))
+    }
+  </nav>
 </header>
 
 <style>
-	header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding: 16px 32px;
-		background: white;
-		position: sticky;
-		top: 0;
-		z-index: 100;
-		box-shadow: 0 1px 0 rgba(0,0,0,0.06);
-	}
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    background: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  }
 
-	.logo {
-		font-family: 'VAG Rounded', sans-serif;
-		font-weight: 700;
-		font-size: 1.75rem;
-		color: var(--green);
-		letter-spacing: -0.02em;
-	}
+  .logo {
+    font-family: "VAG Rounded", sans-serif;
+    font-weight: 700;
+    font-size: 1.75rem;
+    color: var(--green);
+    letter-spacing: -0.02em;
+  }
 
-	nav {
-		display: flex;
-		align-items: center;
-		gap: 12px;
-	}
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 
-	.nav-item {
-		font-family: 'Agrandir', sans-serif;
-		font-weight: 700;
-		font-size: 0.95rem;
-		transition: opacity 0.2s;
-	}
+  .nav-item {
+    font-family: "Agrandir", sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: opacity 0.2s;
+  }
 
-	.nav-item:hover { opacity: 0.75; }
+  .nav-item:hover {
+    opacity: 0.75;
+  }
 
-	.text {
-		color: var(--text);
-		padding: 10px 4px;
-	}
+  .text {
+    color: var(--text);
+    padding: 10px 4px;
+  }
 
-	.pill-purple,
-	.pill-green,
-	.pill-blue {
-		display: inline-block;
-		padding: 10px 24px;
-		border-radius: 999px;
-		color: white;
-	}
+  .pill-purple,
+  .pill-green,
+  .pill-blue {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 999px;
+    color: white;
+  }
 
-	.pill-purple { background: var(--purple); }
-	.pill-green  { background: var(--green); }
-	.pill-blue   { background: var(--blue); color: var(--text); }
+  .pill-purple {
+    background: var(--purple);
+  }
+  .pill-green {
+    background: var(--green);
+  }
+  .pill-blue {
+    background: var(--blue);
+    color: var(--text);
+  }
 </style>

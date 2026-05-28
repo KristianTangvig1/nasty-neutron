@@ -1,143 +1,127 @@
 ---
 const socials = [
-	{ label: 'Instagram', href: 'https://instagram.com/headspacedanmark', color: '#C7E5F6', text: '#353635' },
-	{ label: 'Tik Tok',   href: 'https://tiktok.com/@headspacedanmark',   color: '#353635', text: '#ffffff' },
-	{ label: 'Youtube',   href: 'https://youtube.com/@headspacedanmark',  color: '#D4BFFF', text: '#353635' },
-	{ label: 'Facebook',  href: 'https://facebook.com/headspacedanmark',  color: '#78BA53', text: '#ffffff' },
+  { label: "Instagram", href: "https://instagram.com/headspacedanmark", color: "#C7E5F6", text: "#353635" },
+  { label: "Tik Tok", href: "https://tiktok.com/@headspacedanmark", color: "#353635", text: "#ffffff" },
+  { label: "Youtube", href: "https://youtube.com/@headspacedanmark", color: "#D4BFFF", text: "#353635" },
+  { label: "Facebook", href: "https://facebook.com/headspacedanmark", color: "#78BA53", text: "#ffffff" },
 ];
 
-const gridColors = [
-	'#78BA53','#C7E5F6','#8064AB',
-	'#D4BFFF','#353635','#FFF9F0',
-	'#38B555','#8064AB','#C7E5F6',
-];
+const gridColors = ["#78BA53", "#C7E5F6", "#8064AB", "#D4BFFF", "#353635", "#FFF9F0", "#38B555", "#8064AB", "#C7E5F6"];
 ---
 
 <section class="some">
-	<div class="container">
-		<div class="content">
-			<h2>Følg med på vores<br/>So-Me!</h2>
-			<p>
-				Vi er aktive på de sociale medier og deler løbende nyheder, kampagner og
-				inspirerende indhold for unge. Følg med og vær en del af fællesskabet.
-			</p>
-			<div class="social-buttons">
-				{socials.map((s) => (
-					<a
-						href={s.href}
-						class="social-pill"
-						style={`background:${s.color}; color:${s.text};`}
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						{s.label}
-					</a>
-				))}
-			</div>
-		</div>
+  <div class="container">
+    <div class="content">
+      <h2>Følg med på vores<br />So-Me!</h2>
+      <p>Vi er aktive på de sociale medier og deler løbende nyheder, kampagner og inspirerende indhold for unge. Følg med og vær en del af fællesskabet.</p>
+      <div class="social-buttons">
+        {
+          socials.map((s) => (
+            <a href={s.href} class="social-pill" style={`background:${s.color}; color:${s.text};`} target="_blank" rel="noopener noreferrer">
+              {s.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
 
-		<div class="video-card">
-            <video
-                autoplay
-                muted
-                loop
-                playsinline
-                preload="auto"
-            >
-                <source src="../../public/video/somevideo.mp4" type="video/mp4">
-            </video>
-        </div>
-	</div>
+    <div class="video-card">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="/video/somevideo.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </div>
 </section>
 
 <style>
-	.some {
-		background: var(--cream);
-		padding: 60px 32px;
-	}
+  .some {
+    background: var(--cream);
+    padding: 60px 32px;
+  }
 
-	.container {
-		max-width: 900px;
-		margin: 0 auto;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 48px;
-		align-items: center;
-	}
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
 
-	h2 {
-		font-family: 'Gasoek One', sans-serif;
-		font-size: clamp(1.8rem, 4vw, 2.8rem);
-		font-weight: 400;
-		color: var(--green);
-		margin: 0 0 20px;
-		line-height: 1.1;
-	}
+  h2 {
+    font-family: "Gasoek One", sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 400;
+    color: var(--green);
+    margin: 0 0 20px;
+    line-height: 1.1;
+  }
 
-	p {
-		font-family: 'Agrandir', sans-serif;
-		font-weight: 400;
-		font-size: 1rem;
-		line-height: 1.6;
-		color: var(--text);
-		margin: 0 0 28px;
-	}
+  p {
+    font-family: "Agrandir", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text);
+    margin: 0 0 28px;
+  }
 
-	.social-buttons {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 10px;
-	}
+  .social-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 
-	.social-pill {
-		display: inline-block;
-		padding: 10px 22px;
-		border-radius: 999px;
-		font-family: 'Agrandir', sans-serif;
-		font-weight: 700;
-		font-size: 0.9rem;
-		transition: opacity 0.2s;
-	}
+  .social-pill {
+    display: inline-block;
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-family: "Agrandir", sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: opacity 0.2s;
+  }
 
-	.social-pill:hover { opacity: 0.8; }
+  .social-pill:hover {
+    opacity: 0.8;
+  }
 
-	.grid-mockup {
-		background: white;
-		border-radius: 16px;
-		padding: 8px;
-		box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-	}
+  .grid-mockup {
+    background: white;
+    border-radius: 16px;
+    padding: 8px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  }
 
-	.grid-inner {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 4px;
-		border-radius: 10px;
-		overflow: hidden;
-	}
+  .grid-inner {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
 
-	.grid-cell {
-		aspect-ratio: 1;
-		border-radius: 2px;
-	}
+  .grid-cell {
+    aspect-ratio: 1;
+    border-radius: 2px;
+  }
 
-	@media (max-width: 640px) {
-		.container {
-			grid-template-columns: 1fr;
-		}
-	}
-	.video-card {
-		max-width: 75%;
-		margin: 0 auto;
-		border-radius: 20px;
-		overflow: hidden;
-		box-shadow: 0 6px 28px rgba(0,0,0,0.10);
-	}
+  @media (max-width: 640px) {
+    .container {
+      grid-template-columns: 1fr;
+    }
+  }
+  .video-card {
+    max-width: 75%;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.1);
+  }
 
-	.video-card video {
-		width: 100%;
-		height: auto;
-		display: block;
-	}
-
+  .video-card video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
 </style>

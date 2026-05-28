@@ -1,137 +1,139 @@
 ---
 interface Props {
-	title: string;
-	time: string;
-	location: string;
-	campaign: 'det-okay' | 'diy' | 'brave-together';
-	href?: string;
+  title: string;
+  time: string;
+  location: string;
+  campaign: "det-okay" | "diy" | "brave-together";
+  href?: string;
 }
 
-const { title, time, location, campaign, href = '#' } = Astro.props;
+const { title, time, location, campaign, href = "#" } = Astro.props;
 
 const campaignImage: Record<string, string> = {
-	'det-okay':       '/images/DetOkay-kampagner.webp',
-	'diy':            '/images/Ungdommens-stemme-2.webp',
-	'brave-together': '/images/Maybelline.webp',
+  "det-okay": "/images/DetOkay-kampagner.webp",
+  diy: "/images/Ungdommens-stemme-2.webp",
+  "brave-together": "/images/Maybelline.webp",
 };
 ---
 
 <article class="card">
-	<a href={href}>
-		<div class="card-image">
-			<img src={campaignImage[campaign]} alt={title} />
-		</div>
+  <a href={href}>
+    <div class="card-image">
+      <img src={campaignImage[campaign]} alt={title} />
+    </div>
 
-		<div class="card-body">
-			<h3>{title}</h3>
-			<div class="meta">
-				<span class="meta-item">
-					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-					{time}
-				</span>
-				<span class="meta-item">
-					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-					{location}
-				</span>
-			</div>
-			<span class="cta">Læs mere og deltag ›</span>
-		</div>
-	</a>
+    <div class="card-body">
+      <h3>{title}</h3>
+      <div class="meta">
+        <span class="meta-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          {time}
+        </span>
+        <span class="meta-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          {location}
+        </span>
+      </div>
+      <span class="cta">Læs mere og deltag ›</span>
+    </div>
+  </a>
 </article>
 
 <style>
-	.card {
-		background: white;
-		border-radius: 16px;
-		overflow: hidden;
-		box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-		transition: transform 0.2s ease, box-shadow 0.2s ease;
-	}
+  .card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
 
-	.card:hover {
-		transform: translateY(-4px);
-		box-shadow: 0 8px 28px rgba(0,0,0,0.13);
-	}
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.13);
+  }
 
-	.card > a {
-		display: flex;
-		flex-direction: column;
-		height: 100%;
-		color: inherit;
-	}
+  .card > a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: inherit;
+  }
 
-	/* ── Image area ── */
-	.card-image {
-		height: 190px;
-		overflow: hidden;
-		flex-shrink: 0;
-	}
+  /* ── Image area ── */
+  .card-image {
+    height: 190px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
 
-	.card-image img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		display: block;
-		transition: transform 0.3s ease;
-	}
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
 
-	.card:hover .card-image img {
-		transform: scale(1.04);
-	}
+  .card:hover .card-image img {
+    transform: scale(1.04);
+  }
 
-	/* ── Card body ── */
-	.card-body {
-		padding: 16px 18px 18px;
-		display: flex;
-		flex-direction: column;
-		gap: 8px;
-		flex: 1;
-	}
+  /* ── Card body ── */
+  .card-body {
+    padding: 16px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
 
-	h3 {
-		font-family: 'Agrandir', sans-serif;
-		font-weight: 900;
-		font-size: 1rem;
-		color: var(--green);
-		margin: 0;
-	}
+  h3 {
+    font-family: "Agrandir", sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    color: var(--green);
+    margin: 0;
+  }
 
-	.meta {
-		display: flex;
-		flex-direction: column;
-		gap: 4px;
-	}
+  .meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
 
-	.meta-item {
-		display: flex;
-		align-items: center;
-		gap: 6px;
-		font-family: 'Agrandir', sans-serif;
-		font-weight: 400;
-		font-size: 0.8rem;
-		color: #666;
-	}
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: "Agrandir", sans-serif;
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: #666;
+  }
 
-	.meta-item svg {
-		flex-shrink: 0;
-		color: var(--green);
-	}
+  .meta-item svg {
+    flex-shrink: 0;
+    color: var(--green);
+  }
 
-	.cta {
-		display: inline-block;
-		margin-top: auto;
-		padding: 8px 18px;
-		background: var(--green);
-		color: white;
-		border-radius: 999px;
-		font-family: 'Agrandir', sans-serif;
-		font-weight: 700;
-		font-size: 0.8rem;
-		align-self: flex-start;
-		transition: background 0.2s;
-	}
+  .cta {
+    display: inline-block;
+    margin-top: auto;
+    padding: 8px 18px;
+    background: var(--green);
+    color: white;
+    border-radius: 999px;
+    font-family: "Agrandir", sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    align-self: flex-start;
+    transition: background 0.2s;
+  }
 
-	.card:hover .cta {
-		background: var(--green-highlight);
-	}
+  .card:hover .cta {
+    background: var(--green-highlight);
+  }
 </style>

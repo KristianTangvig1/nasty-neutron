@@ -1,183 +1,174 @@
 ---
+
 ---
 
 <section class="about">
-	<div class="about-inner">
+  <div class="about-inner">
+    <!-- Row 1: photo with quote overlay · intro text -->
+    <div class="row row-top">
+      <div class="photo-wrap">
+        <img src="/images/omos1.webp" alt="Headspace fællesskab" />
+        <div class="quote-overlay">
+          <span class="q-mark">&ldquo;</span>
+          <p class="q-text">Stærke fællesskaber forebygger ensomhed og mistrivsel blandt unge.</p>
+          <span class="q-attr">— headspace Danmark</span>
+        </div>
+      </div>
 
-		<!-- Row 1: photo with quote overlay · intro text -->
-		<div class="row row-top">
+      <p class="intro-text">
+        Headspace Events er en organisation, der skaber meningsfulde arrangementer for unge med fokus på mental trivsel, fællesskab og personlig udvikling. Gennem events, workshops og sociale aktiviteter giver Headspace Events unge mulighed for at
+        mødes i trygge rammer, hvor der er plads til både samtaler, nye relationer og fælles oplevelser.
+      </p>
+    </div>
 
-			<div class="photo-wrap">
-				<img src="/images/omos1.webp" alt="Headspace fællesskab" />
-				<div class="quote-overlay">
-					<span class="q-mark">&ldquo;</span>
-					<p class="q-text">Stærke fællesskaber forebygger ensomhed og mistrivsel blandt unge.</p>
-					<span class="q-attr">— headspace Danmark</span>
-				</div>
-			</div>
+    <!-- Row 2: body text · illustration -->
+    <div class="row row-bottom">
+      <div class="body-text">
+        <p>Formålet med aktiviteterne er at styrke unges mentale sundhed ved at skabe fællesskaber, hvor ingen behøver at stå alene med deres udfordringer.</p>
+        <p>Eventsene giver deltagerne mulighed for at dele erfaringer, få nye perspektiver og opleve, at det er helt normalt at tale om både glæder og bekymringer.</p>
+        <p>Headspace Events arbejder ud fra en tro på, at stærke fællesskaber kan være med til at forebygge ensomhed og mistrivsel blandt unge.</p>
+      </div>
 
-			<p class="intro-text">
-				Headspace Events er en organisation, der skaber meningsfulde arrangementer
-				for unge med fokus på mental trivsel, fællesskab og personlig udvikling.
-				Gennem events, workshops og sociale aktiviteter giver Headspace Events unge
-				mulighed for at mødes i trygge rammer, hvor der er plads til både samtaler,
-				nye relationer og fælles oplevelser.
-			</p>
-
-		</div>
-
-		<!-- Row 2: body text · illustration -->
-		<div class="row row-bottom">
-
-			<div class="body-text">
-				<p>
-					Formålet med aktiviteterne er at styrke unges mentale sundhed ved at
-					skabe fællesskaber, hvor ingen behøver at stå alene med deres
-					udfordringer.
-				</p>
-				<p>
-					Eventsene giver deltagerne mulighed for at dele erfaringer, få nye
-					perspektiver og opleve, at det er helt normalt at tale om både glæder
-					og bekymringer.
-				</p>
-				<p>
-					Headspace Events arbejder ud fra en tro på, at stærke fællesskaber kan
-					være med til at forebygge ensomhed og mistrivsel blandt unge.
-				</p>
-			</div>
-
-			<div class="anim-wrap">
-				<img src="/images/drengAnimation.webp" alt="Headspace illustration" />
-			</div>
-
-		</div>
-
-	</div>
+      <div class="anim-wrap">
+        <img src="/images/drengAnimation.webp" alt="Headspace illustration" />
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
-	.about {
-		background: #d4edbb;
-		padding: 64px 32px;
-	}
+  .about {
+    background: #d4edbb;
+    padding: 64px 32px;
+  }
 
-	.about-inner {
-		max-width: 900px;
-		margin: 0 auto;
-		display: flex;
-		flex-direction: column;
-		gap: 56px;
-	}
+  .about-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
 
-	.row {
-		display: grid;
-		gap: 40px;
-		align-items: center;
-	}
+  .row {
+    display: grid;
+    gap: 40px;
+    align-items: center;
+  }
 
-	.row-top    { grid-template-columns: 1fr 1fr; }
-	.row-bottom { grid-template-columns: 3fr 2fr; }
+  .row-top {
+    grid-template-columns: 1fr 1fr;
+  }
+  .row-bottom {
+    grid-template-columns: 3fr 2fr;
+  }
 
-	/* ── Photo with quote overlay ── */
-	.photo-wrap {
-		position: relative;
-		border-radius: 20px;
-		overflow: hidden;
-		aspect-ratio: 1;
-		box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-	}
+  /* ── Photo with quote overlay ── */
+  .photo-wrap {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  }
 
-	.photo-wrap img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		display: block;
-	}
+  .photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 
-	.quote-overlay {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		width: 82%;
-		background: rgba(128, 100, 171, 0.88);
-		backdrop-filter: blur(6px);
-		border-radius: 14px;
-		padding: 20px 22px;
-		display: flex;
-		flex-direction: column;
-		gap: 8px;
-	}
+  .quote-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 82%;
+    background: rgba(128, 100, 171, 0.88);
+    backdrop-filter: blur(6px);
+    border-radius: 14px;
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
 
-	.q-mark {
-		font-family: 'Gasoek One', sans-serif;
-		font-size: 2.8rem;
-		line-height: 0.7;
-		color: rgba(255,255,255,0.4);
-	}
+  .q-mark {
+    font-family: "Gasoek One", sans-serif;
+    font-size: 2.8rem;
+    line-height: 0.7;
+    color: rgba(255, 255, 255, 0.4);
+  }
 
-	.q-text {
-		font-family: 'Agrandir', sans-serif;
-		font-weight: 900;
-		font-size: 0.9rem;
-		line-height: 1.5;
-		color: white;
-		margin: 0;
-	}
+  .q-text {
+    font-family: "Agrandir", sans-serif;
+    font-weight: 900;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: white;
+    margin: 0;
+  }
 
-	.q-attr {
-		font-family: 'Agrandir', sans-serif;
-		font-weight: 700;
-		font-size: 0.72rem;
-		color: rgba(255,255,255,0.65);
-	}
+  .q-attr {
+    font-family: "Agrandir", sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.65);
+  }
 
-	/* ── Intro text ── */
-	.intro-text {
-		font-family: 'Agrandir', sans-serif;
-		font-weight: 400;
-		font-size: 0.95rem;
-		line-height: 1.8;
-		color: var(--text);
-		margin: 0;
-	}
+  /* ── Intro text ── */
+  .intro-text {
+    font-family: "Agrandir", sans-serif;
+    font-weight: 400;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text);
+    margin: 0;
+  }
 
-	/* ── Body text ── */
-	.body-text {
-		display: flex;
-		flex-direction: column;
-		gap: 20px;
-	}
+  /* ── Body text ── */
+  .body-text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 
-	.body-text p {
-		font-family: 'Agrandir', sans-serif;
-		font-weight: 400;
-		font-size: 0.95rem;
-		line-height: 1.8;
-		color: var(--text);
-		margin: 0;
-	}
+  .body-text p {
+    font-family: "Agrandir", sans-serif;
+    font-weight: 400;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text);
+    margin: 0;
+  }
 
-	/* ── Illustration ── */
-	.anim-wrap {
-		border-radius: 20px;
-		overflow: hidden;
-		aspect-ratio: 16/9;
-		box-shadow: 0 8px 32px rgba(0,0,0,0.12);
-	}
+  /* ── Illustration ── */
+  .anim-wrap {
+    border-radius: 20px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  }
 
-	.anim-wrap img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		display: block;
-	}
+  .anim-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 
-	/* ── Responsive ── */
-	@media (max-width: 680px) {
-		.row-top,
-		.row-bottom { grid-template-columns: 1fr; }
-		.photo-wrap { aspect-ratio: 4/3; }
-		.anim-wrap  { aspect-ratio: 16/9; }
-	}
+  /* ── Responsive ── */
+  @media (max-width: 680px) {
+    .row-top,
+    .row-bottom {
+      grid-template-columns: 1fr;
+    }
+    .photo-wrap {
+      aspect-ratio: 4/3;
+    }
+    .anim-wrap {
+      aspect-ratio: 16/9;
+    }
+  }
 </style>
