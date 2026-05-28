@@ -98,23 +98,42 @@
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
   }
 
-  /* Front layer: SVG illustration, rotated over the photo */
+  /* Front layer: SVG sticker */
   .illustration svg {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 65%;
-    max-width: 240px;
-    transform: rotate(-9deg);
+    bottom: -140px;
+    left: -60px;
+    width: 50%;
+    max-width: 400px;
+    transform: rotate(-25deg);
     filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.18));
   }
 
   @media (max-width: 640px) {
+    .om-headspace {
+      padding: 48px 16px;
+    }
+
     .container {
       grid-template-columns: 1fr;
+      gap: 28px;
     }
+
     .illustration {
-      display: none;
+      height: 260px;
+    }
+
+    .photo-layer {
+      width: 85%;
+      height: 100%;
+      top: 0;
+    }
+
+    .illustration svg {
+      width: 38%;
+      max-width: 120px;
+      bottom: 10px;
+      left: -8px;
     }
   }
 </style>
